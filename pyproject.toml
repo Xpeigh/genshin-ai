@@ -1,0 +1,68 @@
+[project]
+name = "genshin-companion"
+version = "0.0.1"
+description = "Local-first, unofficial Genshin Impact companion: roster scoring, build recommendations, lore Q&A."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28,<1",        # ONLY imported by genshin_companion/net/client.py (enforced)
+    "pydantic>=2.9,<3",      # strict schemas for downloaded data
+    "platformdirs>=4.3,<5",  # per-user data directory
+]
+
+[project.scripts]
+genshin-companion = "genshin_companion.app.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "pip-audit>=2.7",
+    "uv>=0.5",  # used by tasks.py (export for the audit); also the supported installer
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/genshin_companion"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+addopts = "-ra --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "TID", "T20", "SIM", "RUF"]
+ignore = ["S101"]  # asserts are fine in tests; src avoids them by convention
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S", "T20", "TID251", "E501", "RUF001"]  # tests may use httpx.MockTransport
+"src/genshin_companion/net/client.py" = ["TID251"]  # the one allowed networking module
+"tasks.py" = ["S", "T20"]
+"src/genshin_companion/app/cli.py" = ["T20"]  # the CLI prints by design
+
+# Defence in depth for the networking rule (tests/test_architecture.py is the authoritative check).
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"httpx".msg = "Networking is only allowed in genshin_companion/net/client.py"
+"requests".msg = "Networking is only allowed in genshin_companion/net/client.py"
+"urllib3".msg = "Networking is only allowed in genshin_companion/net/client.py"
+"aiohttp".msg = "Networking is only allowed in genshin_companion/net/client.py"
+"urllib.request".msg = "Networking is only allowed in genshin_companion/net/client.py"
+"http.client".msg = "Networking is only allowed in genshin_companion/net/client.py"
+"socket".msg = "Networking is only allowed in genshin_companion/net/client.py"
+"pickle".msg = "Never unpickle: downloaded data is untrusted"
+"marshal".msg = "Never unmarshal: downloaded data is untrusted"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
+files = ["src", "tasks.py"]

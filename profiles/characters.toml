@@ -1,0 +1,433 @@
+# Curated per-character stat profiles. Edited by hand with Ben; the code only reads this file.
+#
+# source: the game's own in-game recommendation, which the game says is "sourced from recently
+# active players" (usage statistics, not a design decision). It drifts with the community, so every
+# entry records when it was read and at which game version.
+#
+# confidence: "provisional" until Ben has tuned and approved the weights, then "curated".
+# ("verified" is never set here.) Weights: 1.0 = the game highlights this substat. Starting
+# weights are a mechanical copy of the highlight; tune them with Ben, do not guess.
+#
+# Stat ids are the canonical FIGHT_PROP_* names:
+#   CRIT Rate FIGHT_PROP_CRITICAL, CRIT DMG FIGHT_PROP_CRITICAL_HURT, ATK% FIGHT_PROP_ATTACK_PERCENT,
+#   flat ATK FIGHT_PROP_ATTACK, HP% FIGHT_PROP_HP_PERCENT, flat HP FIGHT_PROP_HP,
+#   DEF% FIGHT_PROP_DEFENSE_PERCENT, flat DEF FIGHT_PROP_DEFENSE, Energy Recharge
+#   FIGHT_PROP_CHARGE_EFFICIENCY, Elemental Mastery FIGHT_PROP_ELEMENT_MASTERY.
+
+[[profile]]
+character_id = "10000143"
+name = "Vesna"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game recommended substats (highlighted), sourced by the game from recently active players; read by Ben"
+confidence = "provisional"
+# recommended_sets and recommended_main_stats not recorded yet: the game shows them, Ben to supply.
+
+[profile.substat_weights]
+FIGHT_PROP_CRITICAL_HURT = 1.0
+FIGHT_PROP_ATTACK_PERCENT = 1.0
+FIGHT_PROP_ELEMENT_MASTERY = 1.0
+FIGHT_PROP_CRITICAL = 1.0
+
+# Guide-site profiles (10 characters), transcribed 2026-11-08 from a spreadsheet a friend sent Ben
+# (Genshin_Artifact_Stat_Priorities.xlsx, sha256 in .claude/handoff-2026-11-08.md). The sheet
+# summarises third-party guides (links are citations, never fetched). Everything here is
+# `provisional`: it is NOT the in-game recommendation and not verified by Ben.
+#
+# Format: `substat_tiers` is the source's ranking, best first; a tier holds ties. A bare stat id
+# is unconditional; an inline table adds a condition that the scorer must honour. Main stats
+# list acceptable choices as the source gave them (not a ranking). Flower and plume are fixed
+# (flat HP / flat ATK) so are not listed. No numeric weights are stored: tiers are converted to
+# weights by the scoring engine under one documented rule.
+
+[[profile]]
+character_id = "10000136"
+name = "Mitya"
+role = "Off-field Stellar-Conduct sub-DPS"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    ["FIGHT_PROP_ELEMENT_MASTERY"],
+    ["FIGHT_PROP_CRITICAL_HURT"],
+    ["FIGHT_PROP_CRITICAL"],
+    ["FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+notes = [
+    "CRIT DMG about 2x CRIT Rate. ER only matters when he is the only Electro in the team.",
+    "Very new character (v7.2), so guides may still shift. On-field version leans further into CRIT and personal damage.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Disenchantment in Deep Shadow"]
+
+[[profile.recommended_sets]]
+sets = ["Gilded Dreams"]
+tier = "alternative"
+condition = "if he is your only Electro"
+
+[[profile.recommended_sets]]
+sets = ["Heart of the Furnace"]
+tier = "alternative"
+
+[[profile.references]]
+name = "Of Zen and Computing, Nov 2026"
+url = "https://www.ofzenandcomputing.com/best-mitya-build-in-genshin-impact/"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_ELEMENT_MASTERY", { stat = "FIGHT_PROP_ATTACK_PERCENT", condition = "only for a pure personal-damage build" }]
+goblet = ["FIGHT_PROP_ELEMENT_MASTERY"]
+circlet = ["FIGHT_PROP_CRITICAL_HURT", { stat = "FIGHT_PROP_CRITICAL", condition = "if your CRIT DMG rolls are already high" }]
+
+[[profile]]
+character_id = "10000070"
+name = "Nilou"
+role = "Bloom support"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    ["FIGHT_PROP_HP_PERCENT"],
+    ["FIGHT_PROP_CHARGE_EFFICIENCY"],
+    ["FIGHT_PROP_HP"],
+    ["FIGHT_PROP_ELEMENT_MASTERY"],
+]
+notes = [
+    "Alternative sets: other HP +20% 2pc combinations.",
+    "ER about 170% (about 150% for the on-field version).",
+    "Bloom can't crit, so CRIT stats are wasted here. Team must be Hydro + Dendro only for her passive.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Tenacity of the Millelith", "Vourukasha's Glow"]
+
+[[profile.references]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/383715"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_HP_PERCENT", { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", condition = "if you can't reach the target" }]
+goblet = ["FIGHT_PROP_HP_PERCENT"]
+circlet = ["FIGHT_PROP_HP_PERCENT"]
+
+[[profile]]
+character_id = "10000035"
+name = "Qiqi"
+role = "Stellar-Conduct support / healer"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    ["FIGHT_PROP_ATTACK_PERCENT"],
+    [{ stat = "FIGHT_PROP_CRITICAL", condition = "only with Favonius Sword" }],
+    ["FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+notes = [
+    "No fixed ER target; her Burst is optional before C6.",
+    "Her Skill does the work, so she runs fine on low investment. Built for her reworked Stellar-Conduct role.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Tenacity of the Millelith"]
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+tier = "alternative"
+condition = "at C6 if someone else has Tenacity"
+
+[[profile.references]]
+name = "All Things How, Aug 2026"
+url = "https://allthings.how/genshin-impact-best-qiqi-build-for-stellar-conduct-teams/"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_ATTACK_PERCENT", { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", condition = "if you Burst every rotation" }]
+goblet = ["FIGHT_PROP_ATTACK_PERCENT"]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", condition = "with Favonius Sword" }, { stat = "FIGHT_PROP_HEAL_ADD", condition = "without Favonius Sword" }, { stat = "FIGHT_PROP_ATTACK_PERCENT", condition = "at C6" }]
+
+[[profile]]
+character_id = "10000127"
+name = "Illuga"
+role = "Lunar-Crystallize / Geo support"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", condition = "only up to the ER target; see notes" }],
+    ["FIGHT_PROP_ELEMENT_MASTERY"],
+    [{ stat = "FIGHT_PROP_CRITICAL", condition = "only with Favonius Lance" }],
+]
+notes = [
+    "EM 750-800+. ER 160-180% (140-160% with Favonius Lance). CRIT Rate 20-50% only with Favonius Lance.",
+    "Best paired with Zibai or Columbina. Silken Moon's 4pc buff only stays active off-field from C2. Guides differ on ER vs EM first, so hit the ER target, then stack EM.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Silken Moon's Serenade"]
+
+[[profile.recommended_sets]]
+sets = ["Gilded Dreams", "Wanderer's Troupe"]
+tier = "alternative"
+condition = "at C0, one guide prefers these two 2pc EM sets"
+
+[[profile.recommended_sets]]
+sets = ["Instructor"]
+tier = "alternative"
+condition = "budget option"
+
+[[profile.references]]
+name = "Icy Veins, Feb 2026"
+url = "https://www.icy-veins.com/genshin-impact/illuga-guide-best-builds"
+
+[[profile.references]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/555902"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_ELEMENT_MASTERY", { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", condition = "if you can't reach the target" }]
+goblet = ["FIGHT_PROP_ELEMENT_MASTERY"]
+circlet = ["FIGHT_PROP_ELEMENT_MASTERY"]
+
+[[profile]]
+character_id = "10000115"
+name = "Dahlia"
+role = "Hydro shield support"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    ["FIGHT_PROP_CHARGE_EFFICIENCY"],
+    ["FIGHT_PROP_HP_PERCENT"],
+    [{ stat = "FIGHT_PROP_CRITICAL", condition = "only with Favonius Sword" }],
+]
+notes = [
+    "Alternative sets: 2pc HP% + 2pc HP% combinations.",
+    "40,000 HP first, then ER toward 200%+.",
+    "Shield scales on HP; Burst uptime gives the ATK SPD buff.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+
+[[profile.recommended_sets]]
+sets = ["Scroll of the Hero of Cinder City"]
+tier = "alternative"
+
+[[profile.references]]
+name = "Icy Veins"
+url = "https://www.icy-veins.com/genshin-impact/dahlia-guide-best-builds"
+
+[[profile.references]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/516026"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_HP_PERCENT"]
+goblet = ["FIGHT_PROP_HP_PERCENT"]
+circlet = ["FIGHT_PROP_HP_PERCENT", { stat = "FIGHT_PROP_CRITICAL", condition = "with Favonius Sword" }]
+
+[[profile]]
+character_id = "10000090"
+name = "Chevreuse"
+role = "Overload support / healer"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    ["FIGHT_PROP_HP_PERCENT"],
+    ["FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+notes = [
+    "ER can be high at C0 (one guide says 180-200%); depends on team.",
+    "Her ATK buff and healing scale on HP. Only works in Pyro + Electro teams.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+
+[[profile.recommended_sets]]
+sets = ["Song of Days Past"]
+tier = "alternative"
+condition = "if someone else has Noblesse Oblige"
+
+[[profile.references]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/426201"
+
+[[profile.references]]
+name = "ascciyev.pages.dev: Energy Recharge range (lower-quality source)"
+url = "https://ascciyev.pages.dev/posts/best-chevreuse-builds-in-genshin-impact"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_HP_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY"]
+goblet = ["FIGHT_PROP_HP_PERCENT"]
+circlet = ["FIGHT_PROP_HP_PERCENT", "FIGHT_PROP_HEAL_ADD"]
+
+[[profile]]
+character_id = "10000080"
+name = "Mika"
+role = "Buffer / healer"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    ["FIGHT_PROP_CHARGE_EFFICIENCY"],
+    ["FIGHT_PROP_HP_PERCENT"],
+]
+notes = [
+    "ER about 200%.",
+    "Healing scales on HP; ATK SPD buff comes from his Skill talent, not artifacts.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+
+[[profile.recommended_sets]]
+sets = ["Ocean-Hued Clam"]
+tier = "alternative"
+
+[[profile.recommended_sets]]
+sets = ["The Exile"]
+tier = "alternative"
+condition = "budget option"
+
+[[profile.references]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/390096"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_HP_PERCENT"]
+goblet = ["FIGHT_PROP_HP_PERCENT"]
+circlet = ["FIGHT_PROP_HP_PERCENT", "FIGHT_PROP_HEAL_ADD", { stat = "FIGHT_PROP_CRITICAL", condition = "with Favonius Lance" }]
+
+[[profile]]
+character_id = "10000072"
+name = "Candace"
+role = "Hydro buff support"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    ["FIGHT_PROP_CHARGE_EFFICIENCY"],
+    [{ stat = "FIGHT_PROP_CRITICAL", condition = "only with Favonius Lance" }],
+    ["FIGHT_PROP_HP_PERCENT"],
+    ["FIGHT_PROP_HP"],
+]
+notes = [
+    "At least 180% ER, then HP.",
+    "Guides disagree on the best set: Cinder City is the newest pick (v7.0 guide), Emblem the older favourite.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Scroll of the Hero of Cinder City"]
+
+[[profile.recommended_sets]]
+sets = ["Emblem of Severed Fate"]
+tier = "alternative"
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+tier = "alternative"
+
+[[profile.references]]
+name = "GenshinBuilds, v7.0"
+url = "https://genshin-builds.com/api/character/candace"
+
+[[profile.references]]
+name = "Icy Veins"
+url = "https://icy-veins.com/genshin-impact/candace-guide-best-builds"
+
+[[profile.references]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/candace"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_CHARGE_EFFICIENCY", { stat = "FIGHT_PROP_HP_PERCENT", condition = "once ER is met" }]
+goblet = ["FIGHT_PROP_HP_PERCENT", { stat = "FIGHT_PROP_WATER_ADD_HURT", condition = "for her own damage" }]
+circlet = ["FIGHT_PROP_HP_PERCENT", { stat = "FIGHT_PROP_CRITICAL", condition = "with Favonius Lance" }]
+
+[[profile]]
+character_id = "10000031"
+name = "Fischl"
+role = "Off-field Electro sub-DPS"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", condition = "only up to the ER target; see notes" }],
+    ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"],
+    ["FIGHT_PROP_ATTACK_PERCENT"],
+]
+notes = [
+    "ER 120-140%, ATK 2,000+, CRIT Rate 70%+, CRIT DMG 140%+.",
+    "ER is listed first only because her target is low. After that, everything goes into CRIT.",
+]
+
+[[profile.recommended_sets]]
+sets = ["A Day Carved From Rising Winds"]
+
+[[profile.recommended_sets]]
+sets = ["Golden Troupe"]
+tier = "alternative"
+
+[[profile.references]]
+name = "GameWith, Nov 2026"
+url = "https://gamewith.net/genshin-impact/article/show/22345"
+
+[[profile.references]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/fischl"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_ATTACK_PERCENT", { stat = "FIGHT_PROP_ELEMENT_MASTERY", condition = "in Aggravate teams" }]
+goblet = ["FIGHT_PROP_ELEC_ADD_HURT"]
+circlet = ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"]
+
+[[profile]]
+character_id = "10000048"
+name = "Yanfei"
+role = "Pyro main DPS"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
+confidence = "provisional"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"],
+    ["FIGHT_PROP_ATTACK_PERCENT"],
+    ["FIGHT_PROP_ELEMENT_MASTERY"],
+    ["FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+notes = [
+    "ER 120-130% if she Bursts every other rotation.",
+    "At C4 she can instead be a shielder: ER or HP% Sands, HP% Goblet and Circlet, ER 200-240%.",
+]
+
+[[profile.recommended_sets]]
+sets = ["Crimson Witch of Flames"]
+
+[[profile.recommended_sets]]
+sets = ["Marechaussee Hunter"]
+tier = "alternative"
+condition = "with Furina"
+
+[[profile.recommended_sets]]
+sets = ["Gilded Dreams"]
+tier = "alternative"
+condition = "for Overload"
+
+[[profile.references]]
+name = "Icy Veins"
+url = "https://icy-veins.com/genshin-impact/yanfei-guide-best-builds"
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_ATTACK_PERCENT", { stat = "FIGHT_PROP_ELEMENT_MASTERY", condition = "for Vaporize/Overload" }]
+goblet = ["FIGHT_PROP_FIRE_ADD_HURT"]
+circlet = ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"]

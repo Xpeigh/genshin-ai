@@ -4660,12 +4660,14 @@ rank = 2
 #   - only CURRENT pages (stated update date since 2026-06-01, or game version 7.x) count towards
 #     consensus; stale or undated pages are kept as visible references (`as_of`) only
 #   - sets: `best` = named best by at least two current pages, otherwise `alternative`; if the sources
-#     disagree on the best set the profile says so in its notes instead of picking one
+#     disagree on the best set the profile says so in its notes instead of picking one; if only one
+#     current page names a best set and nobody contradicts it, that set is `best` and a note says so
 #   - main stats: unconditional when every current page lists it, otherwise conditional ("only some of
 #     the sources recommend it"); substats: ordered by their mean rank across the current pages
 #   - a substat keeps a `condition` (so it is NOT scored) only for a real condition such as "only with
 #     Favonius Lance"; targets and remarks (for example "ER about 130%") are notes
-#   - weapons: `best` = two current pages and rank 3 or better on one; the weapon type of every
+#   - weapons: `best` = two current pages and rank 3 or better on one (or, for a character with a
+#     single current source, that source's top pick, flagged in the notes); the weapon type of every
 #     recommendation was checked against the character's
 # The 8 characters the friend's sheet already covered (above) keep that profile and gained the weapons.
 # Condition and note wording is the researcher's short paraphrase of the page, not a quotation.
@@ -6317,18 +6319,17 @@ substat_tiers = [
 ]
 notes = [
     "Build labels the sources gave: dehya sub-dps build; off-field general support.",
-    "The current sources do not agree on a single best set.",
+    "Only one current source names a best set (the other gave no usable set list).",
 ]
+
+[[profile.recommended_sets]]
+sets = ["Scroll of the Hero of Cinder City"]
+condition = "4-piece; Dehya's frequent off-field application and excess EM trigger the 4-piece effect"
 
 [[profile.recommended_sets]]
 sets = ["Marechaussee Hunter"]
 tier = "alternative"
 condition = "ranked 2nd in Artifact Rankings; no condition stated"
-
-[[profile.recommended_sets]]
-sets = ["Scroll of the Hero of Cinder City"]
-tier = "alternative"
-condition = "4-piece; Dehya's frequent off-field application and excess EM trigger the 4-piece effect"
 
 [[profile.recommended_sets]]
 sets = ["Vourukasha's Glow"]
@@ -7686,8 +7687,12 @@ substat_tiers = [
 ]
 notes = [
     "Build labels the sources gave: freeze comp dps (page's first build); melt dps (page's first build).",
-    "The current sources do not agree on a single best set.",
+    "Only one current source names a best set (the other gave no usable set list).",
 ]
+
+[[profile.recommended_sets]]
+sets = ["Wanderer's Troupe"]
+condition = "Best-in-slot for the Melt playstyle"
 
 [[profile.recommended_sets]]
 sets = ["Gilded Dreams"]
@@ -7702,11 +7707,6 @@ condition = "Wins only if 5 Charged Attacks fit inside its 10-second buff; other
 sets = ["Unfinished Reverie"]
 tier = "alternative"
 condition = "Page says it beats the two sets above when Burn uptime is consistent"
-
-[[profile.recommended_sets]]
-sets = ["Wanderer's Troupe"]
-tier = "alternative"
-condition = "Best-in-slot for the Melt playstyle"
 
 [[profile.references]]
 name = "GenshinBuilds"
@@ -8813,6 +8813,9 @@ substat_tiers = [
     ["FIGHT_PROP_CHARGE_EFFICIENCY"],
     ["FIGHT_PROP_ELEMENT_MASTERY"],
 ]
+notes = [
+    "Only one current source lists weapons, so its top pick is marked best.",
+]
 
 [[profile.recommended_sets]]
 sets = ["Viridescent Venerer"]
@@ -8834,7 +8837,6 @@ circlet = ["FIGHT_PROP_ELEMENT_MASTERY"]
 
 [[profile.recommended_weapons]]
 name = "Freedom-Sworn"
-tier = "alternative"
 
 [[profile.recommended_weapons.sources]]
 name = "GenshinBuilds"
@@ -8870,13 +8872,12 @@ substat_tiers = [
 ]
 notes = [
     "Build labels the sources gave: ayaka main dps build; dps build.",
-    "The current sources do not agree on a single best set.",
+    "Only one current source names a best set (the other gave no usable set list).",
     "CRIT Rate: avoid on Primordial Jade Cutter",
 ]
 
 [[profile.recommended_sets]]
 sets = ["Blizzard Strayer"]
-tier = "alternative"
 condition = "4pc; best set for Ayaka"
 
 [[profile.recommended_sets]]
@@ -9211,10 +9212,13 @@ substat_tiers = [
 ]
 notes = [
     "Build labels the sources gave: aggravate dps build; keqing electro main dps build.",
-    "The current sources do not agree on a single best set.",
+    "Only one current source names a best set (the other gave no usable set list).",
     "CRIT Rate: Keep CRIT Rate and CRIT DMG in a good ratio",
     "CRIT DMG: Keep CRIT Rate and CRIT DMG in a good ratio",
 ]
+
+[[profile.recommended_sets]]
+sets = ["Thundering Fury"]
 
 [[profile.recommended_sets]]
 sets = ["Thundersoother"]
@@ -9225,10 +9229,6 @@ condition = "Only as a full 4pc against Electro-affected enemies"
 sets = ["Gilded Dreams"]
 tier = "alternative"
 condition = "Works in mixed-element parties"
-
-[[profile.recommended_sets]]
-sets = ["Thundering Fury"]
-tier = "alternative"
 
 [[profile.references]]
 name = "GenshinBuilds"
@@ -10461,14 +10461,13 @@ substat_tiers = [
 ]
 notes = [
     "Build labels the sources gave: dps (out of date) build; hexerei support build (burst support).",
-    "The current sources do not agree on a single best set.",
+    "Only one current source names a best set (the other gave no usable set list).",
     "Energy Recharge: goal of roughly 200-300% Energy Recharge",
     "CRIT Rate: roughly 1:2 CRIT Rate to CRIT DMG ratio",
 ]
 
 [[profile.recommended_sets]]
 sets = ["Heart of Depth"]
-tier = "alternative"
 condition = "4pc, rank 1; cleanest match for an on-field attacker"
 
 [[profile.recommended_sets]]
@@ -11738,6 +11737,9 @@ substat_tiers = [
     ["FIGHT_PROP_ATTACK_PERCENT"],
     ["FIGHT_PROP_ELEMENT_MASTERY"],
 ]
+notes = [
+    "Only one current source lists weapons, so its top pick is marked best.",
+]
 
 [[profile.recommended_sets]]
 sets = ["Emblem of Severed Fate"]
@@ -11759,7 +11761,6 @@ circlet = ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"]
 
 [[profile.recommended_weapons]]
 name = "Engulfing Lightning"
-tier = "alternative"
 
 [[profile.recommended_weapons.sources]]
 name = "GameWith"
@@ -12865,8 +12866,12 @@ substat_tiers = [
 ]
 notes = [
     "Build labels the sources gave: heal support build; support healer (page heading 'sigewinne is best built as a support healer').",
-    "The current sources do not agree on a single best set.",
+    "Only one current source names a best set (the other gave no usable set list).",
 ]
+
+[[profile.recommended_sets]]
+sets = ["Tenacity of the Millelith", "Vourukasha's Glow"]
+condition = "2-piece + 2-piece; HP build for support healer"
 
 [[profile.recommended_sets]]
 sets = ["Song of Days Past"]
@@ -12887,11 +12892,6 @@ condition = "4-piece; substitute 2, extra damage when the team is not built arou
 sets = ["Scroll of the Hero of Cinder City"]
 tier = "alternative"
 condition = "4-piece; when the team can reliably trigger a Pyro-class reaction"
-
-[[profile.recommended_sets]]
-sets = ["Tenacity of the Millelith", "Vourukasha's Glow"]
-tier = "alternative"
-condition = "2-piece + 2-piece; HP build for support healer"
 
 [[profile.references]]
 name = "GenshinBuilds"
@@ -14793,6 +14793,9 @@ substat_tiers = [
     ["FIGHT_PROP_CRITICAL"],
     ["FIGHT_PROP_HP"],
 ]
+notes = [
+    "Only one current source lists weapons, so its top pick is marked best.",
+]
 
 [[profile.recommended_sets]]
 sets = ["Deepwood Memories"]
@@ -14834,7 +14837,6 @@ circlet = ["FIGHT_PROP_HEAL_ADD"]
 
 [[profile.recommended_weapons]]
 name = "Favonius Lance"
-tier = "alternative"
 
 [[profile.recommended_weapons.sources]]
 name = "GenshinBuilds"
@@ -15070,9 +15072,13 @@ substat_tiers = [
 ]
 notes = [
     "Build labels the sources gave: shield support build; zhongli best build guide (shield support).",
-    "The current sources do not agree on a single best set.",
+    "Only one current source names a best set (the other gave no usable set list).",
     "Energy Recharge: after HP%, to use his Burst crowd control",
 ]
+
+[[profile.recommended_sets]]
+sets = ["Tenacity of the Millelith"]
+condition = "4-piece; recommended in the Best Build section; can be kept active through his off-field skill"
 
 [[profile.recommended_sets]]
 sets = ["Archaic Petra"]
@@ -15098,11 +15104,6 @@ condition = "4-piece; situational, for heavily reaction-focused teams"
 sets = ["Noblesse Oblige"]
 tier = "alternative"
 condition = "4-piece; good if no other Noblesse holder is in the team; pairs with his Burst"
-
-[[profile.recommended_sets]]
-sets = ["Scroll of the Hero of Cinder City"]
-tier = "alternative"
-condition = "4-piece; preferred over Archaic Petra with multiple Crystallize-compatible elements or Geo characters wanting DMG%"
 
 [[profile.references]]
 name = "GameWith"

@@ -131,12 +131,16 @@ def test_every_in_game_profile_has_cited_weapons() -> None:
 def test_a_best_weapon_is_backed_by_two_current_pages() -> None:
     for p in _by_name("in-game").values():
         assert any(w.tier == "best" for w in p.recommended_weapons), f"{p.name} has no best weapon"
-    for p in _load():  # in-game and guide profiles alike: "best" always means two current pages
+    for p in _load():  # in-game and guide profiles alike: "best" means two current pages ...
         best = [w for w in p.recommended_weapons if w.tier == "best"]
         for w in best:
             current = [s for s in w.sources if _is_current(s.as_of)]
-            assert len(current) >= 2, (p.name, w.name)
-            assert min(s.rank for s in current) <= 3, (p.name, w.name)
+            if len(current) >= 2:
+                assert min(s.rank for s in current) <= 3, (p.name, w.name)
+            else:  # ... unless the character has a single current source, and then the profile says so
+                assert len(current) == 1, (p.name, w.name)
+                assert any("Only one current source lists weapons" in n for n in p.notes), p.name
+                assert w.sources[0].rank == 1 or current[0].rank == 1, (p.name, w.name)
 
 
 def test_weapon_sources_come_from_the_documented_research_hosts() -> None:
@@ -199,3 +203,27 @@ def test_every_playable_character_has_a_profile() -> None:
         if c.name and c.weapon_type and "-" not in c.id and c.name != "Manekin"
     }
     assert playable <= have, sorted(playable - have)
+
+
+def test_a_single_source_best_set_or_weapon_is_always_flagged() -> None:
+    for p in _by_name("guide").values():
+        has_best_set = any(o.tier == "best" for o in p.recommended_sets)
+        flagged = any("Only one current source names a best set" in n for n in p.notes)
+        disagree = any("do not agree" in n for n in p.notes)
+        assert not (flagged and disagree), p.name  # one reason or the other, never both
+        if p.recommended_sets and not has_best_set:
+            assert disagree, p.name  # no best set always comes with the reason
+        if flagged:
+            assert has_best_set, p.name
+
+
+def test_the_seven_single_source_sets_and_three_single_source_weapons_were_promoted() -> None:
+    guides = _by_name("guide")
+    for name in ("Dehya", "Ganyu", "Kamisato Ayaka", "Keqing", "Mona", "Sigewinne", "Zhongli"):
+        assert any("Only one current source names a best set" in n for n in guides[name].notes), (
+            name
+        )
+        assert any(o.tier == "best" for o in guides[name].recommended_sets), name
+    for name in ("Kaedehara Kazuha", "Raiden Shogun", "Yaoyao"):
+        assert any("Only one current source lists weapons" in n for n in guides[name].notes), name
+        assert sum(w.tier == "best" for w in guides[name].recommended_weapons) == 1, name

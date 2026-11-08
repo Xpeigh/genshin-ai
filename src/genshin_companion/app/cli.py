@@ -11,6 +11,7 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from genshin_companion import __version__
+from genshin_companion.app.recommend import recommend_roster, render_recommendations
 from genshin_companion.app.report import render_profile, render_roster
 from genshin_companion.app.score import render_scores, score_roster
 from genshin_companion.builds.profiles import (
@@ -250,6 +251,29 @@ def _cmd_score(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_recommend(args: argparse.Namespace) -> int:
+    layout = DataLayout(resolve_home())
+    roster, code = _load_roster(layout, args.uid)
+    if roster is None:
+        return code
+    snapshot = _current_snapshot(layout)
+    if snapshot is None:
+        print("No data snapshot: run `genshin-companion sync` first.", file=sys.stderr)
+        return 1
+    profiles = _read_profiles(Path(args.profiles))
+    if profiles is None:
+        return 1
+    recs = recommend_roster(roster, snapshot, profiles)
+    if args.character:
+        wanted = args.character.casefold()
+        recs = [r for r in recs if r.name.casefold() == wanted]
+        if not recs:
+            print(f"No imported character named {args.character!r}.", file=sys.stderr)
+            return 1
+    print(render_recommendations(recs))
+    return 0
+
+
 def _cmd_profiles(args: argparse.Namespace) -> int:
     profiles = _read_profiles(Path(args.file))
     if profiles is None:
@@ -336,6 +360,11 @@ def build_parser() -> argparse.ArgumentParser:
     ros = sub.add_parser("roster", help="show the imported roster with verified roll breakdowns")
     ros.add_argument("uid", nargs="?")
     ros.set_defaults(func=_cmd_roster)
+    rec = sub.add_parser("recommend", help="what to fix first on each imported character's build")
+    rec.add_argument("uid", nargs="?")
+    rec.add_argument("--profiles", default="profiles/characters.toml")
+    rec.add_argument("--character", help="only this character (by name)")
+    rec.set_defaults(func=_cmd_recommend)
     sco = sub.add_parser("score", help="rate the imported roster's artifacts against the profiles")
     sco.add_argument("uid", nargs="?")
     sco.add_argument("--profiles", default="profiles/characters.toml")

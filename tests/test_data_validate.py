@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from genshin_companion.data.changelog import diff, render
 from genshin_companion.data.models import Snapshot, SubstatTier
 from genshin_companion.data.validate import validate
@@ -106,3 +108,28 @@ def test_changelog_lists_added_removed_and_changed() -> None:
     assert "7.2" in text and "7.3" in text
     assert "New Hero" in text and "10000999" in text
     assert "11501" in text  # changed weapon
+
+
+def _renamed(snap, dataset: str, name: str):  # type: ignore[no-untyped-def]
+    items = [
+        getattr(snap, dataset)[0].model_copy(update={"name": name}),
+        *getattr(snap, dataset)[1:],
+    ]
+    return snap.model_copy(update={dataset: items})
+
+
+@pytest.mark.parametrize("dataset", ["characters", "weapons", "artifact_sets"])
+@pytest.mark.parametrize(
+    "bad", ["", "   ", "Hero\x1b[2J", "bell\x07", "tab\there", "x" * 200, "line\nbreak"]
+)
+def test_unusable_names_are_rejected(dataset: str, bad: str) -> None:
+    report = validate(_renamed(snapshot(), dataset, bad), None)
+    assert report.status == "rejected", (dataset, repr(bad))
+    assert any("name" in e and dataset in e for e in report.errors)
+
+
+@pytest.mark.parametrize("dataset", ["characters", "weapons", "artifact_sets"])
+def test_a_missing_name_is_allowed_and_an_ordinary_name_is_fine(dataset: str) -> None:
+    items = [getattr(snapshot(), dataset)[0].model_copy(update={"name": None})]
+    assert validate(snapshot().model_copy(update={dataset: items}), None).status == "ok"
+    assert validate(_renamed(snapshot(), dataset, "Ordinary Name's é"), None).status == "ok"

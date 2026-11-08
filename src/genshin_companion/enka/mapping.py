@@ -129,10 +129,13 @@ def _character(raw: dict[str, Any], notes: list[str]) -> ImportedCharacter:
                 raise ValueError("neither artifact nor weapon")
         except (ValidationError, ValueError):
             notes.append(f"equipment skipped for avatar {avatar_id}: unreadable entry")
+    depot = raw.get("skillDepotId")
+    skill_depot_id = depot if type(depot) is int and 0 <= depot <= 10**9 else None
     return ImportedCharacter(
         avatar_id=avatar_id,
         level=level,
         constellation=len(raw.get("talentIdList", [])),
+        skill_depot_id=skill_depot_id,
         weapon=weapon,
         artifacts=artifacts,
     )

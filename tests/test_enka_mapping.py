@@ -211,3 +211,25 @@ def test_piece_without_substats_is_valid_but_upgrades_without_rolls_are_not() ->
     equip["reliquary"]["level"] = 9  # +8 with no rolls at all is impossible
     art = parse_showcase(json.dumps(data).encode(), fetched_at=NOW).characters[0].artifacts[0]
     assert not check_artifact(art, snapshot()).ok
+
+
+def _with_depot(value: Any) -> bytes:
+    data = json.loads(showcase())
+    data["avatarInfoList"][0]["skillDepotId"] = value
+    return json.dumps(data).encode()
+
+
+def test_the_documented_skill_depot_id_is_recorded_when_present() -> None:
+    assert parse_showcase(_with_depot(705), fetched_at=NOW).characters[0].skill_depot_id == 705
+    assert parse_showcase(showcase(), fetched_at=NOW).characters[0].skill_depot_id is None
+
+
+@pytest.mark.parametrize("bad", ["705", True, -1, 10**12, None, [705], 1.5])
+def test_a_malformed_skill_depot_id_is_ignored_not_trusted(bad: Any) -> None:
+    assert parse_showcase(_with_depot(bad), fetched_at=NOW).characters[0].skill_depot_id is None
+
+
+def test_saved_rosters_without_the_field_still_load() -> None:
+    roster = parse_showcase(showcase(), fetched_at=NOW)
+    text = roster.model_dump_json()
+    assert type(roster).model_validate_json(text.replace(',"skill_depot_id":null', "")) == roster

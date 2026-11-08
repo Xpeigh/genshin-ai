@@ -43,6 +43,14 @@ def _version(v: str) -> tuple[int, int] | None:
         return None
 
 
+MAX_NAME: Final = 120
+
+
+def _usable_name(name: str) -> bool:
+    """Names reach terminals and the chat model: they must be printable, not blank, and bounded."""
+    return bool(name.strip()) and name.isprintable() and len(name) <= MAX_NAME
+
+
 def _structural(snap: Snapshot, report: ValidationReport) -> None:
     for name in REQUIRED_DATASETS:
         if not getattr(snap, name):
@@ -61,6 +69,17 @@ def _structural(snap: Snapshot, report: ValidationReport) -> None:
         math.isfinite(m.value) for m in snap.main_stats
     ):
         report.errors.append("non-finite stat value")
+
+    for label, names in (
+        ("characters", [c.name for c in snap.characters]),
+        ("weapons", [w.name for w in snap.weapons]),
+        ("artifact_sets", [s.name for s in snap.artifact_sets]),
+    ):
+        bad = sum(1 for n in names if n is not None and not _usable_name(n))
+        if bad:
+            report.errors.append(
+                f"{bad} unusable name(s) in {label} (blank, control characters or too long)"
+            )
 
     per_rarity: dict[int, set[int]] = defaultdict(set)
     counts: dict[tuple[int, str], int] = defaultdict(int)

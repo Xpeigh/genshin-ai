@@ -53,6 +53,7 @@ class CharacterResult:
     pieces: tuple[PieceResult, ...] = ()
     summary: CharacterSummary | None = None
     notes: tuple[str, ...] = field(default=())
+    chosen: CharacterProfile | None = None  # the profile the scores came from
 
 
 def _safe(text: str, limit: int = 120) -> str:
@@ -124,6 +125,7 @@ def score_roster(
                 tuple(pieces[s] for s in SLOT_ORDER if s in pieces),
                 summary,
                 tuple(notes),
+                chosen,
             )
         )
     return results

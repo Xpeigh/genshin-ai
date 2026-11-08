@@ -44,6 +44,9 @@ class ImportedCharacter(_Frozen):
     avatar_id: int
     level: int
     constellation: int = Field(ge=0, le=6)
+    # Enka's documented "Character Skill Set ID". Recorded as sent; not yet used to pick a Traveler
+    # variant, because how it relates to the per-element ids in the store is not documented.
+    skill_depot_id: int | None = Field(default=None, ge=0, le=10**9)
     weapon: ImportedWeapon | None
     artifacts: list[ImportedArtifact]
 

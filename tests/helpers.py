@@ -122,3 +122,45 @@ class StreamingTransport(httpx.BaseTransport):
             stream=httpx.ByteStream(response.read()),
             extensions=response.extensions,
         )
+
+
+def scoring_snapshot(substat_confidence: str = "curated") -> Snapshot:
+    """A tiny hand-made tier table with round numbers, for hand-checkable scoring tests.
+
+    Not game data. 5-star tiers: CRIT 0.02/0.03/0.04, CRIT DMG 0.04/0.06/0.08, ATK% 0.04/0.05/0.06,
+    HP 100/200/300, EM 10/20. 4-star ATK%: 0.03/0.04/0.05.
+    """
+    from genshin_companion.data.models import SubstatTier
+
+    p = "FIGHT_PROP_"
+    table = {
+        ("500101", 5, p + "CRITICAL", 1, 0.02), ("500102", 5, p + "CRITICAL", 2, 0.03), ("500103", 5, p + "CRITICAL", 3, 0.04),
+        ("500201", 5, p + "CRITICAL_HURT", 1, 0.04), ("500202", 5, p + "CRITICAL_HURT", 2, 0.06), ("500203", 5, p + "CRITICAL_HURT", 3, 0.08),
+        ("500301", 5, p + "ATTACK_PERCENT", 1, 0.04), ("500302", 5, p + "ATTACK_PERCENT", 2, 0.05), ("500303", 5, p + "ATTACK_PERCENT", 3, 0.06),
+        ("400301", 4, p + "ATTACK_PERCENT", 1, 0.03), ("400302", 4, p + "ATTACK_PERCENT", 2, 0.04), ("400303", 4, p + "ATTACK_PERCENT", 3, 0.05),
+        ("500401", 5, p + "HP", 1, 100.0), ("500402", 5, p + "HP", 2, 200.0), ("500403", 5, p + "HP", 3, 300.0),
+        ("500501", 5, p + "ELEMENT_MASTERY", 1, 10.0), ("500502", 5, p + "ELEMENT_MASTERY", 2, 20.0),
+    }  # fmt: skip
+    return Snapshot(
+        game_version="7.2",
+        fetched_at=NOW,
+        sources=[],
+        confidence={
+            "substat_tiers": substat_confidence,  # type: ignore[dict-item]
+            "main_stats": "curated",
+            "characters": "curated",
+            "weapons": "curated",
+            "artifact_sets": "curated",
+        },
+        notes=[],
+        prop_names={},
+        substat_tiers=[
+            SubstatTier(affix_id=a, rarity=r, stat=s, position=pos, value=v)
+            for a, r, s, pos, v in sorted(table)
+        ],
+        main_stats=[],
+        characters=[],
+        weapons=[],
+        artifact_sets=[],
+        artifacts=[],
+    )

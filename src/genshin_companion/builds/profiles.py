@@ -322,6 +322,8 @@ def load_profiles(text: str) -> list[CharacterProfile]:
         data = tomllib.loads(text)
     except tomllib.TOMLDecodeError as exc:
         raise ProfileError(f"not valid TOML: {exc}") from None
+    except ValueError:  # e.g. an integer literal over Python's digit limit
+        raise ProfileError("not valid TOML: a value is out of range") from None
     except RecursionError:
         raise ProfileError("not valid TOML: nested too deeply") from None
     unknown = sorted(set(data) - {"profile"})

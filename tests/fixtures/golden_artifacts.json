@@ -1,0 +1,350 @@
+{
+ "source": "Ben's own pieces, copied from the game UI on 2026-11-08 (Current 5 Star Artifacts.xlsx). Percent stats are fractions, flat stats plain numbers. All pieces are 5-star.",
+ "pieces": [
+  {
+   "piece_name": "Gladiator's Longing",
+   "slot": "sands",
+   "level": 20,
+   "equipped_by": "Vesna",
+   "main_stat": "FIGHT_PROP_ELEMENT_MASTERY",
+   "main_value": 187.0,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_HP",
+     "value": 986.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_DEFENSE",
+     "value": 42.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ATTACK",
+     "value": 14.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CHARGE_EFFICIENCY",
+     "value": 0.052,
+     "active": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Witch's End Time",
+   "slot": "sands",
+   "level": 4,
+   "equipped_by": "Diluc",
+   "main_stat": "FIGHT_PROP_DEFENSE_PERCENT",
+   "main_value": 0.186,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_CRITICAL_HURT",
+     "value": 0.07,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ATTACK_PERCENT",
+     "value": 0.053,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ELEMENT_MASTERY",
+     "value": 19.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_HP",
+     "value": 209.0,
+     "active": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Witch's Heart Flames",
+   "slot": "goblet",
+   "level": 4,
+   "equipped_by": "Diluc",
+   "main_stat": "FIGHT_PROP_HP_PERCENT",
+   "main_value": 0.149,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_ATTACK",
+     "value": 14.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CRITICAL_HURT",
+     "value": 0.054,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_HP",
+     "value": 209.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CHARGE_EFFICIENCY",
+     "value": 0.058,
+     "active": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Pendulum That Ceased Amidst a Great Fall",
+   "slot": "circlet",
+   "level": 0,
+   "equipped_by": "Traveller (Cryo)",
+   "main_stat": "FIGHT_PROP_HP_PERCENT",
+   "main_value": 0.07,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_CHARGE_EFFICIENCY",
+     "value": 0.045,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_DEFENSE_PERCENT",
+     "value": 0.066,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_HP",
+     "value": 209.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_DEFENSE",
+     "value": 21.0,
+     "active": false
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Heavensent Reward",
+   "slot": "goblet",
+   "level": 0,
+   "equipped_by": "No one",
+   "main_stat": "FIGHT_PROP_ROCK_ADD_HURT",
+   "main_value": 0.07,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_ELEMENT_MASTERY",
+     "value": 19.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CHARGE_EFFICIENCY",
+     "value": 0.065,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_DEFENSE_PERCENT",
+     "value": 0.073,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_DEFENSE",
+     "value": 16.0,
+     "active": false
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Bloodstained Flower of Iron",
+   "slot": "flower",
+   "level": 0,
+   "equipped_by": "Xinyan",
+   "main_stat": "FIGHT_PROP_HP",
+   "main_value": 717.0,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_ATTACK",
+     "value": 16.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CRITICAL_HURT",
+     "value": 0.078,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CHARGE_EFFICIENCY",
+     "value": 0.065,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CRITICAL",
+     "value": 0.039,
+     "active": true
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Bloodstained Flower of Iron",
+   "slot": "flower",
+   "level": 0,
+   "equipped_by": "Valeriy",
+   "main_stat": "FIGHT_PROP_HP",
+   "main_value": 717.0,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_CHARGE_EFFICIENCY",
+     "value": 0.058,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ELEMENT_MASTERY",
+     "value": 21.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ATTACK",
+     "value": 18.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_DEFENSE_PERCENT",
+     "value": 0.058,
+     "active": false
+    }
+   ],
+   "notes": [
+    "substat 4: sheet said 'DEF', fixture uses 'DEF %': sheet says unactivated 'DEF' with value 0.058; flat DEF values are 16-23, 5.8% is a DEF% tier (the Enka import does not list unactivated substats) Confirmed by Ben on 2026-11-08."
+   ]
+  },
+  {
+   "piece_name": "Bloodstained Iron Mask",
+   "slot": "circlet",
+   "level": 0,
+   "equipped_by": "Xinyan",
+   "main_stat": "FIGHT_PROP_HP_PERCENT",
+   "main_value": 0.07,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_HP",
+     "value": 209.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ATTACK_PERCENT",
+     "value": 0.053,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CHARGE_EFFICIENCY",
+     "value": 0.058,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ELEMENT_MASTERY",
+     "value": 23.0,
+     "active": false
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Royal Plume",
+   "slot": "plume",
+   "level": 0,
+   "equipped_by": "Dahlia",
+   "main_stat": "FIGHT_PROP_ATTACK",
+   "main_value": 47.0,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_ATTACK_PERCENT",
+     "value": 0.058,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_HP",
+     "value": 209.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_HP_PERCENT",
+     "value": 0.047,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CHARGE_EFFICIENCY",
+     "value": 0.052,
+     "active": false
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Royal Silver Urn",
+   "slot": "goblet",
+   "level": 0,
+   "equipped_by": "Charlotte",
+   "main_stat": "FIGHT_PROP_ICE_ADD_HURT",
+   "main_value": 0.07,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_CRITICAL",
+     "value": 0.031,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_HP_PERCENT",
+     "value": 0.047,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_DEFENSE",
+     "value": 21.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ATTACK",
+     "value": 14.0,
+     "active": false
+    }
+   ],
+   "notes": []
+  },
+  {
+   "piece_name": "Thundersoother's Diadem",
+   "slot": "circlet",
+   "level": 0,
+   "equipped_by": "Varesa",
+   "main_stat": "FIGHT_PROP_CRITICAL_HURT",
+   "main_value": 0.093,
+   "substats": [
+    {
+     "stat": "FIGHT_PROP_HP",
+     "value": 209.0,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_HP_PERCENT",
+     "value": 0.041,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_ATTACK_PERCENT",
+     "value": 0.053,
+     "active": true
+    },
+    {
+     "stat": "FIGHT_PROP_CRITICAL",
+     "value": 0.031,
+     "active": false
+    }
+   ],
+   "notes": [
+    "substat 2: sheet said 'ATK %', fixture uses 'HP %': sheet labelled both substats 'ATK %'; the Enka import of this piece lists HP% 4.1 and ATK% 5.3 Confirmed by Ben on 2026-11-08."
+   ]
+  }
+ ]
+}

@@ -332,8 +332,11 @@ def test_scoring_is_pure(path: Path) -> None:
     assert not hits(mods, {"random", "time", "datetime", "secrets", "uuid"}), (
         f"{rel(path)} imports a source of non-determinism"
     )
-    # Nothing it can reach, even indirectly, may touch the network, a process or an LLM client.
-    transitive = hits(set(reach(path)), NETWORK_MODULES | PROCESS_STRICT | LLM_CLIENT_MODULES)
+    # Nothing it can reach, even indirectly, may touch the network, a process, an LLM client or the
+    # file system (``scoring`` may import ``data``, so ``data.store`` must stay out of its reach).
+    transitive = hits(
+        set(reach(path)), NETWORK_MODULES | PROCESS_STRICT | LLM_CLIENT_MODULES | IO_MODULES
+    )
     assert not transitive, f"{rel(path)} transitively reaches {sorted(transitive)}"
 
 

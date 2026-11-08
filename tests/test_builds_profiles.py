@@ -411,3 +411,8 @@ tier = "best"
         load_profiles(no_sources)
     with pytest.raises(ProfileError):
         load_profiles(GOOD + WEAPON_BLOCK + WEAPON_BLOCK)
+
+
+def test_an_absurdly_long_integer_is_a_clean_profile_error() -> None:
+    with pytest.raises(ProfileError):
+        load_profiles(GOOD.replace("usage_percent = 70.1", "usage_percent = " + "9" * 5000))

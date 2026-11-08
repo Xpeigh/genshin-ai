@@ -24,7 +24,11 @@ Status legend: [ ] todo, [x] done. Update as you go and add newly discovered tas
 
 ## Phase 2: Scoring engine (the heart of the project)
 - [ ] Pure, deterministic library: no network, no LLM, no file I/O inside scoring functions
-- [ ] Artifact scoring (substat roll-value, crit value, main stat and set fit, potential for unleveled pieces)
+- [x] Weights rule approved by Ben 2026-11-08 (favoured = 1.0, roll value = tier value / best 5-star tier, guide tiers 1.0/0.75/0.5/0.25, conditional stats weight 0 and flagged). Spec: `docs/scoring-spec.md` (awaiting Ben's review before code)
+- [x] Artifact scoring v1 built per `docs/scoring-spec.md` (piece roll score, useful rolls, crit value, main stat and set fit, per-character summary, `genshin-companion score`), independently reviewed (28 findings, confirmed ones fixed with tests). Golden tests run on Ben's 11 hand-copied 5-star pieces (two sheet label typos confirmed by Ben)
+- [ ] Scoring next steps: '% of theoretical maximum' and potential range for unleveled pieces (documented upgrade model), weapon scoring, whether to score conditional stats
+- [ ] Capture the Traveler's element in the Enka import (skill depot) so a variant profile can be matched exactly
+- [ ] Snapshot validation does not check names (empty or control characters); the score command sanitises at its boundary, but `data/validate.py` should reject bad names
 - [ ] Weapon scoring and ranking per character (stat-based first, curated passive tags second)
 - [ ] Golden tests with hand-verified artifacts (ask Ben to supply a few real pieces)
 - [ ] Stat-weight profiles per character and role (curated data file, versioned)
@@ -102,6 +106,7 @@ Scope principle: never brute-force every variable (character x level x C0-C6 x t
 - [x] Recommended weapons researched online (the game has none): 2 rounds, 26 research agents, every cited claim re-checked against the live page by a second agent (511 supported, 13 flagged and excluded). `recommended_weapons` added to the format (name, tier, sources with url/accessed/as_of/rank), 135 options across the 28 in-game profiles, names checked against the snapshot and weapon type against the character. Awaiting Ben's review before commit
 - [ ] Weapon-type check inside `validate_profiles` needs a data-sourced weapon-type map (the generator used one derived from Ben's roster; the snapshot itself does not pair character and weapon type names with ints)
 - [ ] Weapons for the 8 guide-only characters (Mitya, Nilou, Qiqi, Illuga, Candace, Fischl, Yanfei, Chevreuse) are not researched; 16 cited pages are stale and 4 undated (kept visible, never counted towards `best`)
+- [ ] Data for characters beyond the 28: searched 2026-11-08. Only lead is Prydwen.gg per-character WEAPON usage percentages (from Enka-connected profiles, large samples, refreshed ~07 Nov 2026); it blocks automated fetches (HTTP 403, terms page unreadable; robots.txt allows character pages, crawl-delay 10), so NOT fetched or worked around. No public source found for main-stat/substat percentages; HoYoLAB wiki recommendations are the same HoYoverse data but scraping is barred by their ToS. Best path: ask the friend with the guide sheet for the same in-game table for their characters (covers the 8 guide-only ones); Ben may screenshot a few Prydwen pages by hand
 - [ ] Imported pieces are mostly low rarity/level: golden fixtures from Ben's own account will be weak; consider more mature artifacts (Enka's documented example account verified the roll maths on 20 five-star pieces)
 
 ## Decisions made

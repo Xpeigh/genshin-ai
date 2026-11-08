@@ -13,6 +13,8 @@ ever uses genshin_companion.net. A failing/unreachable audit FAILS the check unl
 
 from __future__ import annotations
 
+import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -22,13 +24,30 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 
 
-def run(*cmd: str) -> int:
+def run(*cmd: str, env: dict[str, str] | None = None) -> int:
     print(f"\n$ {' '.join(cmd)}", flush=True)
-    return subprocess.call(cmd, cwd=ROOT)
+    return subprocess.call(cmd, cwd=ROOT, env=env)
 
 
-def py(*args: str) -> int:
-    return run(sys.executable, "-m", *args)
+def py(*args: str, env: dict[str, str] | None = None) -> int:
+    return run(sys.executable, "-m", *args, env=env)
+
+
+def real_snapshot_env() -> dict[str, str] | None:
+    """Environment for the tests that need the REAL data snapshot (golden tests, never committed).
+
+    Uses the repo-local ``data-home`` snapshot if one has been synced; otherwise those tests skip.
+    """
+    pointer = ROOT / "data-home" / "snapshots" / "current.json"
+    try:
+        current = json.loads(pointer.read_text(encoding="utf-8"))["current"]
+    except (OSError, ValueError, KeyError):
+        print("note: no data-home snapshot, golden tests will be skipped", flush=True)
+        return None
+    snapshot = ROOT / "data-home" / "snapshots" / current / "snapshot.json"
+    if not snapshot.is_file():
+        return None
+    return {**os.environ, "GENSHIN_REAL_SNAPSHOT": str(snapshot)}
 
 
 def audit() -> int:
@@ -57,7 +76,7 @@ def check(skip_audit: bool) -> int:
         ("ruff lint", lambda: py("ruff", "check", ".")),
         ("ruff format", lambda: py("ruff", "format", "--check", ".")),
         ("mypy", lambda: py("mypy")),
-        ("pytest", lambda: py("pytest", "-q")),
+        ("pytest", lambda: py("pytest", "-q", env=real_snapshot_env())),
     ]
     if not skip_audit:
         steps.append(("dependency audit", audit))

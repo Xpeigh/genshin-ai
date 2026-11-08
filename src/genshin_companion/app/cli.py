@@ -8,9 +8,17 @@ from collections.abc import Sequence
 from datetime import UTC, datetime
 from pathlib import Path
 
+from pydantic import ValidationError
+
 from genshin_companion import __version__
 from genshin_companion.app.report import render_profile, render_roster
-from genshin_companion.builds.profiles import ProfileError, load_profiles, validate_profiles
+from genshin_companion.app.score import render_scores, score_roster
+from genshin_companion.builds.profiles import (
+    CharacterProfile,
+    ProfileError,
+    load_profiles,
+    validate_profiles,
+)
 from genshin_companion.config import default_network_policy
 from genshin_companion.data import sources
 from genshin_companion.data.changelog import diff, render
@@ -172,22 +180,36 @@ def _cmd_import(args: argparse.Namespace) -> int:
     return 0
 
 
-def _cmd_roster(args: argparse.Namespace) -> int:
-    layout = DataLayout(resolve_home())
+def _load_roster(layout: DataLayout, uid: str | None) -> tuple[Roster | None, int]:
+    """The one saved roster (or the one named by ``uid``), or an error exit code."""
     folder = layout.user / "rosters"
     files = sorted(folder.glob("*.json")) if folder.exists() else []
-    if args.uid:
-        files = [f for f in files if f.stem == args.uid]
+    if uid:
+        files = [f for f in files if f.stem == uid]
     if not files:
         print("No imported roster. Run: genshin-companion import <uid>", file=sys.stderr)
-        return 1
+        return None, 1
     if len(files) > 1:
         print(
             "Several rosters saved; pass a UID: " + ", ".join(f.stem for f in files),
             file=sys.stderr,
         )
-        return 2
-    roster = Roster.model_validate_json(files[0].read_text(encoding="utf-8"))
+        return None, 2
+    try:
+        return Roster.model_validate_json(files[0].read_text(encoding="utf-8")), 0
+    except (ValidationError, UnicodeDecodeError, OSError):
+        print(
+            "The saved roster could not be read. Import it again: genshin-companion import <uid>",
+            file=sys.stderr,
+        )
+        return None, 1
+
+
+def _cmd_roster(args: argparse.Namespace) -> int:
+    layout = DataLayout(resolve_home())
+    roster, code = _load_roster(layout, args.uid)
+    if roster is None:
+        return code
     print(render_roster(roster, _current_snapshot(layout)))
     return 0
 
@@ -195,21 +217,42 @@ def _cmd_roster(args: argparse.Namespace) -> int:
 MAX_PROFILE_FILE_BYTES = 1_000_000
 
 
-def _cmd_profiles(args: argparse.Namespace) -> int:
-    path = Path(args.file)
+def _read_profiles(path: Path) -> list[CharacterProfile] | None:
+    """Load a profile file, printing the reason and returning None if it cannot be used."""
     if not path.is_file():
         print(f"No profile file at {path}", file=sys.stderr)
-        return 1
+        return None
     try:
         if path.stat().st_size > MAX_PROFILE_FILE_BYTES:
             print("Profile file is too large to be a profile file.", file=sys.stderr)
-            return 1
-        profiles = load_profiles(path.read_text(encoding="utf-8"))
+            return None
+        return load_profiles(path.read_text(encoding="utf-8"))
     except ProfileError as exc:
         print(f"Profile file is invalid: {exc}", file=sys.stderr)
-        return 1
     except (OSError, UnicodeDecodeError):
         print("Profile file could not be read as UTF-8 text.", file=sys.stderr)
+    return None
+
+
+def _cmd_score(args: argparse.Namespace) -> int:
+    layout = DataLayout(resolve_home())
+    roster, code = _load_roster(layout, args.uid)
+    if roster is None:
+        return code
+    snapshot = _current_snapshot(layout)
+    if snapshot is None:
+        print("No data snapshot: run `genshin-companion sync` first.", file=sys.stderr)
+        return 1
+    profiles = _read_profiles(Path(args.profiles))
+    if profiles is None:
+        return 1
+    print(render_scores(score_roster(roster, snapshot, profiles)))
+    return 0
+
+
+def _cmd_profiles(args: argparse.Namespace) -> int:
+    profiles = _read_profiles(Path(args.file))
+    if profiles is None:
         return 1
     snapshot = _current_snapshot(DataLayout(resolve_home()))
     for p in profiles:
@@ -293,6 +336,10 @@ def build_parser() -> argparse.ArgumentParser:
     ros = sub.add_parser("roster", help="show the imported roster with verified roll breakdowns")
     ros.add_argument("uid", nargs="?")
     ros.set_defaults(func=_cmd_roster)
+    sco = sub.add_parser("score", help="rate the imported roster's artifacts against the profiles")
+    sco.add_argument("uid", nargs="?")
+    sco.add_argument("--profiles", default="profiles/characters.toml")
+    sco.set_defaults(func=_cmd_score)
     prof = sub.add_parser("profiles", help="list and validate the curated stat profiles")
     prof.add_argument("--file", default="profiles/characters.toml")
     prof.set_defaults(func=_cmd_profiles)

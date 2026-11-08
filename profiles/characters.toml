@@ -5,8 +5,8 @@
 #            "sourced from recently active players" (usage statistics, not a design decision), so it
 #            drifts with the community: every entry records when it was read and at which game
 #            version. `usage_percent` is the share of players using that set, as the game shows it.
-#            The four favoured substats are stored as ONE tier (ties); the order they appear in is
-#            kept, but nobody has established that the order means anything.
+#            The four favoured substats are stored as ONE tier (ties). Ben confirmed 2026-11-08 that
+#            their order in the game carries no meaning; the listed order is kept but not used.
 #   guide    Third-party guide opinion (see the second half of this file).
 #
 # confidence: "provisional" until Ben has checked and approved an entry, then "curated".

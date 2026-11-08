@@ -5,8 +5,8 @@
 #            "sourced from recently active players" (usage statistics, not a design decision), so it
 #            drifts with the community: every entry records when it was read and at which game
 #            version. `usage_percent` is the share of players using that set, as the game shows it.
-#            The four favoured substats are stored as ONE tier (ties). Ben confirmed 2026-11-08 that
-#            their order in the game carries no meaning; the listed order is kept but not used.
+#            The four favoured substats are stored as ONE tier (ties); the order they appear in is
+#            kept, but nobody has established that the order means anything.
 #   guide    Third-party guide opinion (see the second half of this file).
 #
 # confidence: "provisional" until Ben has checked and approved an entry, then "curated".
@@ -18,8 +18,10 @@
 #   DEF% FIGHT_PROP_DEFENSE_PERCENT, flat DEF FIGHT_PROP_DEFENSE, Energy Recharge
 #   FIGHT_PROP_CHARGE_EFFICIENCY, Elemental Mastery FIGHT_PROP_ELEMENT_MASTERY.
 #
-# The in-game table gives sets and favoured substats only. Recommended main stats and weapons
-# are not recorded yet.
+# The in-game table gives sets, favoured substats and favoured main stats for sands, goblet and
+# circlet (flower and plume are always flat HP / flat ATK, so they are not listed). Main stats are
+# in the order the game lists them (highest use first) with `usage_percent`; a bare stat id means
+# the game showed no percentage. Recommended weapons are not recorded yet.
 
 [[profile]]
 character_id = "10000016"
@@ -37,6 +39,11 @@ substat_tiers = [
 sets = ["Crimson Witch of Flames"]
 usage_percent = 70.1
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 82.5 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 9.2 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 4.8 }]
+goblet = [{ stat = "FIGHT_PROP_FIRE_ADD_HURT", usage_percent = 81.3 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 13.8 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.4 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 64.3 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 27.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 5.5 }]
+
 [[profile]]
 character_id = "10000143"
 name = "Vesna"
@@ -52,6 +59,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Scarlet Proof"]
 usage_percent = 94.8
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 93.6 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 2.7 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.6 }]
+goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 92.2 }, { stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 3.2 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.5 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 76.2 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 19.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 2.2 }]
 
 [[profile]]
 character_id = "10000111"
@@ -69,6 +81,11 @@ substat_tiers = [
 sets = ["Long Night's Oath"]
 usage_percent = 80.7
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 94.4 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.9 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 1.3 }]
+goblet = [{ stat = "FIGHT_PROP_ELEC_ADD_HURT", usage_percent = 81.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 15.1 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.1 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 66.6 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 30 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 1.8 }]
+
 [[profile]]
 character_id = "10000007-705"
 name = "Traveler"
@@ -84,6 +101,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Disenchantment in Deep Shadow"]
 usage_percent = 42
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 82.8 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 9.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 3.3 }]
+goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 80.6 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 7.8 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 3.2 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 70.3 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 20 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.7 }]
 
 [[profile]]
 character_id = "10000006"
@@ -105,6 +127,11 @@ usage_percent = 27.2
 sets = ["Emblem of Severed Fate"]
 usage_percent = 24.9
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 55.6 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 20.4 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 19.8 }]
+goblet = [{ stat = "FIGHT_PROP_ELEC_ADD_HURT", usage_percent = 68.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 17.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 8 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 55.7 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 28.9 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 6.6 }]
+
 [[profile]]
 character_id = "10000109"
 name = "Yumemizuki Mizuki"
@@ -121,6 +148,11 @@ substat_tiers = [
 sets = ["Scarlet Proof"]
 usage_percent = 43
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 89.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.6 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 2.1 }]
+goblet = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 79.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 9.7 }, { stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 8.1 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 48.8 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 31.2 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 17 }]
+
 [[profile]]
 character_id = "10000023"
 name = "Xiangling"
@@ -136,6 +168,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Emblem of Severed Fate"]
 usage_percent = 83
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 74.1 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 17.6 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 5.3 }]
+goblet = [{ stat = "FIGHT_PROP_FIRE_ADD_HURT", usage_percent = 84.1 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 12 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.3 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 65.2 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 27.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.3 }]
 
 [[profile]]
 character_id = "10000034"
@@ -157,6 +194,11 @@ usage_percent = 36.5
 sets = ["Gladiator's Finale"]
 usage_percent = 14.8
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 82.3 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 9 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 6 }]
+goblet = [{ stat = "FIGHT_PROP_ROCK_ADD_HURT", usage_percent = 70.3 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 23.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 3.1 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 50 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 35.1 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 11.2 }]
+
 [[profile]]
 character_id = "10000108"
 name = "Lan Yan"
@@ -172,6 +214,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Viridescent Venerer"]
 usage_percent = 83.4
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 86.5 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 6 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 5.8 }]
+goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 86 }, { stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 8.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 1.6 }]
+circlet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 76.6 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 12.8 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 7.6 }]
 
 [[profile]]
 character_id = "10000083"
@@ -189,6 +236,11 @@ substat_tiers = [
 sets = ["Viridescent Venerer"]
 usage_percent = 59.2
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 59.4 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 23.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 9.7 }]
+goblet = [{ stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 73.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 14.9 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 4.8 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 54.5 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 33.6 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 5.4 }]
+
 [[profile]]
 character_id = "10000043"
 name = "Sucrose"
@@ -204,6 +256,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Viridescent Venerer"]
 usage_percent = 90.9
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 81 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 11 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 5.9 }]
+goblet = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 72.7 }, { stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 12.5 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 9.3 }]
+circlet = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 74.6 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 11.2 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 7.9 }]
 
 [[profile]]
 character_id = "10000015"
@@ -225,6 +282,11 @@ usage_percent = 35.2
 sets = ["Emblem of Severed Fate"]
 usage_percent = 31.6
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 69.4 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 21 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 5.6 }]
+goblet = [{ stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 78.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 14.7 }, { stat = "FIGHT_PROP_PHYSICAL_ADD_HURT", usage_percent = 1.7 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 48.5 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 41.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.5 }]
+
 [[profile]]
 character_id = "10000036"
 name = "Chongyun"
@@ -240,6 +302,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Blizzard Strayer"]
 usage_percent = 34.9
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 75.8 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 13.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 6.1 }]
+goblet = [{ stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 77.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 15.4 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 2.5 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 50.8 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 38.6 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 7.2 }]
 
 [[profile]]
 character_id = "10000014"
@@ -257,6 +324,11 @@ substat_tiers = [
 sets = ["Maiden Beloved"]
 usage_percent = 42.5
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 76.9 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 9.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 7.3 }]
+goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 80.1 }, { stat = "FIGHT_PROP_WATER_ADD_HURT", usage_percent = 8.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.7 }]
+circlet = [{ stat = "FIGHT_PROP_HEAL_ADD", usage_percent = 66 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 21.1 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 4.6 }]
+
 [[profile]]
 character_id = "10000021"
 name = "Amber"
@@ -268,10 +340,15 @@ kind = "in-game"
 substat_tiers = [
     ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY"],
 ]
-notes = ["The game showed no usage percentage for this set."]
+notes = ["The game showed no usage percentages for this character yet."]
 
 [[profile.recommended_sets]]
 sets = ["Wanderer's Troupe"]
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 71.1 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 13.9 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 9 }]
+goblet = [{ stat = "FIGHT_PROP_FIRE_ADD_HURT", usage_percent = 73.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 16.2 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 3.1 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 49.2 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 39.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.1 }]
 
 [[profile]]
 character_id = "10000064"
@@ -288,6 +365,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Husk of Opulent Dreams"]
 usage_percent = 64.9
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 76.5 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 19.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 2 }]
+goblet = [{ stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 92.1 }, { stat = "FIGHT_PROP_ROCK_ADD_HURT", usage_percent = 4.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 1 }]
+circlet = [{ stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 82.3 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 12.5 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 3.3 }]
 
 [[profile]]
 character_id = "10000076"
@@ -309,6 +391,11 @@ usage_percent = 30.8
 sets = ["Emblem of Severed Fate"]
 usage_percent = 28.3
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 82.2 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 13.2 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 2.3 }]
+goblet = [{ stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 62.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 26.9 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 4.3 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 69.3 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 18.2 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 7.8 }]
+
 [[profile]]
 character_id = "10000088"
 name = "Charlotte"
@@ -324,6 +411,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Gladiator's Finale", "Emblem of Severed Fate"]
 usage_percent = 37.7
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 73.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 22.2 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 2.7 }]
+goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 85.1 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 7.8 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 3.5 }]
+circlet = [{ stat = "FIGHT_PROP_HEAL_ADD", usage_percent = 56.7 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 21 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 15.5 }]
 
 [[profile]]
 character_id = "10000080"
@@ -341,6 +433,11 @@ substat_tiers = [
 sets = ["Noblesse Oblige"]
 usage_percent = 57.8
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 57 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 34.1 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 7.2 }]
+goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 85.9 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 5.1 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.6 }]
+circlet = [{ stat = "FIGHT_PROP_HEAL_ADD", usage_percent = 48.3 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 25 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 20.3 }]
+
 [[profile]]
 character_id = "10000039"
 name = "Diona"
@@ -356,6 +453,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Noblesse Oblige"]
 usage_percent = 47.4
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 62.9 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 31 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.2 }]
+goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 87.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.3 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 3.8 }]
+circlet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 66.1 }, { stat = "FIGHT_PROP_HEAL_ADD", usage_percent = 18.9 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 9.1 }]
 
 [[profile]]
 character_id = "10000074"
@@ -373,6 +475,11 @@ substat_tiers = [
 sets = ["Tenacity of the Millelith"]
 usage_percent = 66.9
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 88.2 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 7.2 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 2.7 }]
+goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 88.9 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 6.3 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 1.8 }]
+circlet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 82.8 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 10.4 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 3.7 }]
+
 [[profile]]
 character_id = "10000148"
 name = "Alyosha"
@@ -389,6 +496,11 @@ substat_tiers = [
 sets = ["Noblesse Oblige"]
 usage_percent = 61.2
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 75 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 21.8 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.6 }]
+goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 84.7 }, { stat = "FIGHT_PROP_ELEC_ADD_HURT", usage_percent = 7.4 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 4.1 }]
+circlet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 58.8 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 28.3 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 7 }]
+
 [[profile]]
 character_id = "10000137"
 name = "Valeriy"
@@ -400,10 +512,15 @@ kind = "in-game"
 substat_tiers = [
     ["FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ATTACK"],
 ]
-notes = ["The game showed no usage percentage for this set."]
+notes = ["The game showed no usage percentages for this character yet."]
 
 [[profile.recommended_sets]]
 sets = ["Heart of the Furnace"]
+
+[profile.recommended_main_stats]
+sands = ["FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY"]
+goblet = ["FIGHT_PROP_ATTACK_PERCENT"]
+circlet = ["FIGHT_PROP_ATTACK_PERCENT"]
 
 [[profile]]
 character_id = "10000056"
@@ -421,6 +538,11 @@ substat_tiers = [
 sets = ["Emblem of Severed Fate"]
 usage_percent = 81.8
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 67.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 26.7 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 2.9 }]
+goblet = [{ stat = "FIGHT_PROP_ELEC_ADD_HURT", usage_percent = 73.6 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 22.3 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.4 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 59.3 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 31.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 7.1 }]
+
 [[profile]]
 character_id = "10000067"
 name = "Collei"
@@ -436,6 +558,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Deepwood Memories"]
 usage_percent = 72.6
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 48.3 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 27.6 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 20.9 }]
+goblet = [{ stat = "FIGHT_PROP_GRASS_ADD_HURT", usage_percent = 75.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 11.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 7.4 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 61.7 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 23.2 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 9.1 }]
 
 [[profile]]
 character_id = "10000115"
@@ -453,6 +580,11 @@ substat_tiers = [
 sets = ["Noblesse Oblige"]
 usage_percent = 70.8
 
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 78.1 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 17.6 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 2.9 }]
+goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 92.8 }, { stat = "FIGHT_PROP_WATER_ADD_HURT", usage_percent = 2.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 2 }]
+circlet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 80.6 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 13 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 3.2 }]
+
 [[profile]]
 character_id = "10000121"
 name = "Aino"
@@ -468,6 +600,11 @@ substat_tiers = [
 [[profile.recommended_sets]]
 sets = ["Silken Moon's Serenade"]
 usage_percent = 87.1
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 53.2 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 36.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.7 }]
+goblet = [{ stat = "FIGHT_PROP_WATER_ADD_HURT", usage_percent = 51.8 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 26.2 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 12.9 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 64.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 15.6 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 13.4 }]
 
 [[profile]]
 character_id = "10000044"
@@ -488,6 +625,11 @@ usage_percent = 23.9
 [[profile.recommended_sets]]
 sets = ["Bloodstained Chivalry", "Pale Flame"]
 usage_percent = 22.2
+
+[profile.recommended_main_stats]
+sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 61.5 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 24.1 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 7.6 }]
+goblet = [{ stat = "FIGHT_PROP_PHYSICAL_ADD_HURT", usage_percent = 55.9 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 15.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 12.4 }]
+circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 46 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 33.2 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 12.6 }]
 
 # Guide-site profiles (10 characters), transcribed 2026-11-08 from a spreadsheet a friend sent Ben
 # (Genshin_Artifact_Stat_Priorities.xlsx, sha256 in .claude/handoff-2026-11-08.md). The sheet

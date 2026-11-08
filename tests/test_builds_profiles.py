@@ -273,3 +273,57 @@ def test_usage_percent_is_kept_and_bounded() -> None:
     for bad in ("-1", "100.5", "true", '"70"'):
         with pytest.raises(ProfileError):
             load_profiles(GOOD.replace("usage_percent = 70.1", f"usage_percent = {bad}"))
+
+
+# --- usage percentages on main stats ----------------------------------------------------------
+
+SANDS_WITH_PCT = 'sands = ["FIGHT_PROP_ATTACK_PERCENT"]'
+
+
+def _with_sands(entries: str) -> str:
+    return GOOD.replace(SANDS_WITH_PCT, f"sands = [{entries}]")
+
+
+def test_main_stats_keep_the_games_usage_percent() -> None:
+    text = _with_sands(
+        '{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 82.5 }, '
+        '{ stat = "FIGHT_PROP_HP", usage_percent = 4.8 }'
+    )
+    (p,) = load_profiles(text)
+    assert [(c.stat, c.usage_percent) for c in p.recommended_main_stats["sands"]] == [
+        ("FIGHT_PROP_ATTACK_PERCENT", 82.5),
+        ("FIGHT_PROP_HP", 4.8),
+    ]
+    assert validate_profiles(load_profiles(text.replace(', "Test Set Two"', "")), snapshot()) == []
+
+
+def test_a_bare_main_stat_has_no_percent() -> None:
+    (p,) = load_profiles(GOOD)
+    assert p.recommended_main_stats["sands"][0].usage_percent is None
+
+
+@pytest.mark.parametrize(
+    "entries",
+    [
+        # exclusive choices cannot add up to more than 100% (rounding tolerance only)
+        '{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 90 }, '
+        '{ stat = "FIGHT_PROP_HP", usage_percent = 20 }',
+        '{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = -1 }',
+        '{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 100.5 }',
+        '{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = true }',
+        '{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = "82" }',
+    ],
+)
+def test_bad_main_stat_percentages_are_rejected(entries: str) -> None:
+    with pytest.raises(ProfileError):
+        load_profiles(_with_sands(entries))
+
+
+def test_a_percent_on_a_substat_is_rejected() -> None:
+    bad = GOOD.replace(
+        '["FIGHT_PROP_ATTACK_PERCENT"],\n    [{',
+        '[{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 50 }],\n    [{',
+    )
+    assert bad != GOOD
+    with pytest.raises(ProfileError):
+        load_profiles(bad)

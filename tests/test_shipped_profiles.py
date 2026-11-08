@@ -70,3 +70,41 @@ def test_mika_and_dahlia_have_both_kinds_and_they_differ() -> None:
         game, guide = _by_name("in-game")[name], _by_name("guide")[name]
         assert game.character_id == guide.character_id
         assert game.substat_tiers != guide.substat_tiers
+
+
+def _mains(name: str, slot: str) -> list[tuple[str, float | None]]:
+    return [
+        (c.stat, c.usage_percent) for c in _by_name("in-game")[name].recommended_main_stats[slot]
+    ]
+
+
+def test_every_in_game_profile_has_sands_goblet_and_circlet_main_stats() -> None:
+    for p in _by_name("in-game").values():
+        assert set(p.recommended_main_stats) == {"sands", "goblet", "circlet"}, p.name
+        for slot, choices in p.recommended_main_stats.items():
+            assert 1 <= len(choices) <= 3, (p.name, slot)
+
+
+def test_main_stat_spot_checks_against_the_screenshots() -> None:
+    p = "FIGHT_PROP_"
+    assert _mains("Vesna", "sands") == [
+        (p + "ATTACK_PERCENT", 93.6),
+        (p + "ELEMENT_MASTERY", 2.7),
+        (p + "HP_PERCENT", 1.6),
+    ]
+    assert _mains("Vesna", "goblet")[1] == (p + "WIND_ADD_HURT", 3.2)
+    assert _mains("Yun Jin", "sands")[0] == (p + "DEFENSE_PERCENT", 76.5)
+    assert _mains("Barbara", "circlet")[0] == (p + "HEAL_ADD", 66.0)
+    assert _mains("Xinyan", "goblet")[0] == (p + "PHYSICAL_ADD_HURT", 55.9)
+    # Valeriy: the game listed the stats but no percentages yet
+    assert _mains("Valeriy", "sands") == [
+        (p + "ATTACK_PERCENT", None),
+        (p + "CHARGE_EFFICIENCY", None),
+    ]
+    assert _mains("Valeriy", "circlet") == [(p + "ATTACK_PERCENT", None)]
+
+
+def test_in_game_main_stat_shares_never_exceed_100_percent() -> None:
+    for p in _by_name("in-game").values():
+        for slot, choices in p.recommended_main_stats.items():
+            assert sum(c.usage_percent or 0.0 for c in choices) <= 100.5, (p.name, slot)

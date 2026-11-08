@@ -96,7 +96,11 @@ def render_roster(roster: Roster, snapshot: Snapshot | None) -> str:
 
 def _choice(choice: StatChoice) -> str:
     label = stat_label(choice.stat)
-    return f"{label} ({choice.condition})" if choice.condition else label
+    if choice.condition:
+        label = f"{label} ({choice.condition})"
+    if choice.usage_percent is not None:
+        label = f"{label} {choice.usage_percent:g}%"
+    return label
 
 
 def render_profile(p: CharacterProfile) -> str:

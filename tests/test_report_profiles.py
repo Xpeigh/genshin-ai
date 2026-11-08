@@ -89,3 +89,13 @@ def test_kind_and_usage_percent_are_rendered() -> None:
     assert "[provisional, guide]" in out
     assert "Test Set (best, 70.1% of players)" in out
     assert "[provisional, in-game]" in _render(GOOD)
+
+
+def test_main_stat_usage_percent_is_rendered() -> None:
+    text = GOOD.replace(
+        'sands = ["FIGHT_PROP_ATTACK_PERCENT"]',
+        'sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 82.5 }, '
+        '{ stat = "FIGHT_PROP_HP", condition = "only at C6", usage_percent = 4.8 }]',
+    )
+    out = _render(text)
+    assert "sands: ATK% 82.5%, HP (only at C6) 4.8%" in out

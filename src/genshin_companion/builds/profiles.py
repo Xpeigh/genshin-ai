@@ -42,6 +42,7 @@ SLOTS: Final = ("sands", "goblet", "circlet")
 MAX_TEXT: Final = 300
 MAX_STAT_ID: Final = 64
 MAX_PROFILES: Final = 500
+MAX_SHARE_TOTAL: Final = 100.5  # 100% plus display rounding
 MAX_LIST: Final = 20  # tiers, tier entries, choices per slot, sets, weights: far above real use
 
 
@@ -68,6 +69,14 @@ Condition = Annotated[str, Field(min_length=1, max_length=200), _PRINTABLE]
 Note = Annotated[str, Field(min_length=1, max_length=MAX_TEXT), _PRINTABLE]
 
 
+def _plain_number(value: Any) -> Any:
+    """Reject booleans and strings before pydantic's lax mode coerces them to numbers."""
+    if value is not None and (isinstance(value, bool) or not isinstance(value, int | float)):
+        msg = "usage_percent must be a number"
+        raise ValueError(msg)
+    return value
+
+
 def _check_stat_id(value: str) -> str:
     if len(value) > MAX_STAT_ID or not _STAT_RE.fullmatch(value):
         msg = f"{value[:40]!r} is not a canonical FIGHT_PROP_* stat id"
@@ -82,11 +91,19 @@ class StatChoice(BaseModel):
 
     stat: str
     condition: Condition | None = None
+    # Share of players who picked this main stat for the slot, as the game shows it (0-100).
+    # Only meaningful for main stats; substat tiers must not carry it.
+    usage_percent: float | None = Field(default=None, ge=0, le=100)
 
     @field_validator("stat")
     @classmethod
     def _canonical(cls, value: str) -> str:
         return _check_stat_id(value)
+
+    @field_validator("usage_percent", mode="before")
+    @classmethod
+    def _number(cls, value: Any) -> Any:
+        return _plain_number(value)
 
 
 def _as_choice(value: Any) -> Any:
@@ -111,10 +128,7 @@ class SetOption(BaseModel):
     @field_validator("usage_percent", mode="before")
     @classmethod
     def _a_plain_number(cls, value: Any) -> Any:
-        if value is not None and (isinstance(value, bool) or not isinstance(value, int | float)):
-            msg = "usage_percent must be a number"
-            raise ValueError(msg)
-        return value
+        return _plain_number(value)
 
     @field_validator("sets")
     @classmethod
@@ -213,6 +227,9 @@ class CharacterProfile(BaseModel):
                 msg = "a substat tier cannot be empty"
                 raise ValueError(msg)
             for choice in tier:
+                if choice.usage_percent is not None:
+                    msg = "substat tiers do not take usage_percent (main stats only)"
+                    raise ValueError(msg)
                 if choice.stat in seen:
                     msg = f"{choice.stat} appears more than once in substat_tiers"
                     raise ValueError(msg)
@@ -229,6 +246,12 @@ class CharacterProfile(BaseModel):
             stats = [c.stat for c in choices]
             if len(set(stats)) != len(stats):
                 msg = f"a main stat is listed twice for {slot}"
+                raise ValueError(msg)
+            # one piece has one main stat, so the shares are exclusive: more than 100% in total
+            # (beyond display rounding) can only be a misread or a typo
+            total = sum(c.usage_percent or 0.0 for c in choices)
+            if total > MAX_SHARE_TOTAL:
+                msg = f"usage percentages for {slot} add up to {total:g}%, which is over 100%"
                 raise ValueError(msg)
         return value
 

@@ -102,7 +102,7 @@ def _choice(choice: StatChoice) -> str:
 def render_profile(p: CharacterProfile) -> str:
     """One profile as plain text; conditions stay visible so no ranking looks unconditional."""
     out = [
-        f"{p.name} ({p.character_id}) [{p.confidence}] "
+        f"{p.name} ({p.character_id}) [{p.confidence}, {p.kind}] "
         f"read {p.observed_at} at game {p.game_version}"
     ]
     if p.role:
@@ -115,8 +115,10 @@ def render_profile(p: CharacterProfile) -> str:
         out.append(f"    substats: {weights}")
     if p.recommended_sets:
         for option in p.recommended_sets:
+            pct = option.usage_percent
+            share = f", {pct:g}% of players" if pct is not None else ""
             why = f": {option.condition}" if option.condition else ""
-            out.append(f"    set: {' + '.join(option.sets)} ({option.tier}{why})")
+            out.append(f"    set: {' + '.join(option.sets)} ({option.tier}{share}{why})")
     else:
         out.append("    sets: (not recorded)")
     if p.recommended_main_stats:

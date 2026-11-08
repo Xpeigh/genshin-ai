@@ -105,6 +105,16 @@ class SetOption(BaseModel):
     sets: list[Name] = Field(min_length=1, max_length=2)
     tier: Literal["best", "alternative"] = "best"
     condition: Condition | None = None
+    # Share of players using this set, as the game shows it (0-100). Absent when not shown.
+    usage_percent: float | None = Field(default=None, ge=0, le=100)
+
+    @field_validator("usage_percent", mode="before")
+    @classmethod
+    def _a_plain_number(cls, value: Any) -> Any:
+        if value is not None and (isinstance(value, bool) or not isinstance(value, int | float)):
+            msg = "usage_percent must be a number"
+            raise ValueError(msg)
+        return value
 
     @field_validator("sets")
     @classmethod
@@ -146,6 +156,9 @@ class CharacterProfile(BaseModel):
     game_version: str = Field(pattern=r"^[0-9]{1,2}\.[0-9]{1,2}$")
     source: Annotated[str, Field(min_length=10, max_length=MAX_TEXT), AfterValidator(_clean_text)]
     confidence: Confidence = "provisional"
+    # "in-game": the game's own recommendation screen (usage statistics). "guide": third-party
+    # guide opinion. A character may have one profile of each kind; scoring prefers in-game.
+    kind: Literal["in-game", "guide"] = "in-game"
     recommended_sets: list[SetOption] = Field(default=[], max_length=MAX_LIST)
     # Acceptable main stats per slot (flower and plume are fixed). The list is "as the source
     # lists them", not a ranking; choices with a condition are conditional alternatives.
@@ -249,9 +262,9 @@ def load_profiles(text: str) -> list[CharacterProfile]:
         profiles = [CharacterProfile.model_validate(item) for item in raw]
     except ValidationError as exc:
         raise ProfileError(f"invalid profile: {exc.error_count()} problem(s): {exc}") from None
-    ids = [p.character_id for p in profiles]
-    if len(ids) != len(set(ids)):
-        raise ProfileError("duplicate character_id in profiles")
+    keys = [(p.character_id, p.kind) for p in profiles]
+    if len(keys) != len(set(keys)):
+        raise ProfileError("duplicate character_id (per kind) in profiles")
     return profiles
 
 

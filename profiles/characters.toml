@@ -1,33 +1,493 @@
 # Curated per-character stat profiles. Edited by hand with Ben; the code only reads this file.
 #
-# source: the game's own in-game recommendation, which the game says is "sourced from recently
-# active players" (usage statistics, not a design decision). It drifts with the community, so every
-# entry records when it was read and at which game version.
+# Two kinds of profile (`kind`), at most one of each per character; scoring prefers "in-game":
+#   in-game  The game's own Best in Slot + Favoured Minor Affixes screen. The game says it is
+#            "sourced from recently active players" (usage statistics, not a design decision), so it
+#            drifts with the community: every entry records when it was read and at which game
+#            version. `usage_percent` is the share of players using that set, as the game shows it.
+#            The four favoured substats are stored as ONE tier (ties); the order they appear in is
+#            kept, but nobody has established that the order means anything.
+#   guide    Third-party guide opinion (see the second half of this file).
 #
-# confidence: "provisional" until Ben has tuned and approved the weights, then "curated".
-# ("verified" is never set here.) Weights: 1.0 = the game highlights this substat. Starting
-# weights are a mechanical copy of the highlight; tune them with Ben, do not guess.
+# confidence: "provisional" until Ben has checked and approved an entry, then "curated".
+# ("verified" is never set here.)
 #
 # Stat ids are the canonical FIGHT_PROP_* names:
 #   CRIT Rate FIGHT_PROP_CRITICAL, CRIT DMG FIGHT_PROP_CRITICAL_HURT, ATK% FIGHT_PROP_ATTACK_PERCENT,
 #   flat ATK FIGHT_PROP_ATTACK, HP% FIGHT_PROP_HP_PERCENT, flat HP FIGHT_PROP_HP,
 #   DEF% FIGHT_PROP_DEFENSE_PERCENT, flat DEF FIGHT_PROP_DEFENSE, Energy Recharge
 #   FIGHT_PROP_CHARGE_EFFICIENCY, Elemental Mastery FIGHT_PROP_ELEMENT_MASTERY.
+#
+# The in-game table gives sets and favoured substats only. Recommended main stats and weapons
+# are not recorded yet.
+
+[[profile]]
+character_id = "10000016"
+name = "Diluc"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_ELEMENT_MASTERY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Crimson Witch of Flames"]
+usage_percent = 70.1
 
 [[profile]]
 character_id = "10000143"
 name = "Vesna"
 observed_at = "2026-11-08"
 game_version = "7.2"
-source = "In-game recommended substats (highlighted), sourced by the game from recently active players; read by Ben"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
 confidence = "provisional"
-# recommended_sets and recommended_main_stats not recorded yet: the game shows them, Ben to supply.
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_ELEMENT_MASTERY"],
+]
 
-[profile.substat_weights]
-FIGHT_PROP_CRITICAL_HURT = 1.0
-FIGHT_PROP_ATTACK_PERCENT = 1.0
-FIGHT_PROP_ELEMENT_MASTERY = 1.0
-FIGHT_PROP_CRITICAL = 1.0
+[[profile.recommended_sets]]
+sets = ["Scarlet Proof"]
+usage_percent = 94.8
+
+[[profile]]
+character_id = "10000111"
+name = "Varesa"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_ELEMENT_MASTERY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Long Night's Oath"]
+usage_percent = 80.7
+
+[[profile]]
+character_id = "10000007-705"
+name = "Traveler"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_ELEMENT_MASTERY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Disenchantment in Deep Shadow"]
+usage_percent = 42
+
+[[profile]]
+character_id = "10000006"
+name = "Lisa"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ELEMENT_MASTERY", "FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Thundering Fury"]
+usage_percent = 27.2
+
+[[profile.recommended_sets]]
+sets = ["Emblem of Severed Fate"]
+usage_percent = 24.9
+
+[[profile]]
+character_id = "10000109"
+name = "Yumemizuki Mizuki"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ELEMENT_MASTERY", "FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Scarlet Proof"]
+usage_percent = 43
+
+[[profile]]
+character_id = "10000023"
+name = "Xiangling"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ATTACK_PERCENT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Emblem of Severed Fate"]
+usage_percent = 83
+
+[[profile]]
+character_id = "10000034"
+name = "Noelle"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_DEFENSE_PERCENT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Husk of Opulent Dreams"]
+usage_percent = 36.5
+
+[[profile.recommended_sets]]
+sets = ["Gladiator's Finale"]
+usage_percent = 14.8
+
+[[profile]]
+character_id = "10000108"
+name = "Lan Yan"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Viridescent Venerer"]
+usage_percent = 83.4
+
+[[profile]]
+character_id = "10000083"
+name = "Lynette"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ATTACK_PERCENT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Viridescent Venerer"]
+usage_percent = 59.2
+
+[[profile]]
+character_id = "10000043"
+name = "Sucrose"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_ELEMENT_MASTERY", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Viridescent Venerer"]
+usage_percent = 90.9
+
+[[profile]]
+character_id = "10000015"
+name = "Kaeya"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Blizzard Strayer"]
+usage_percent = 35.2
+
+[[profile.recommended_sets]]
+sets = ["Emblem of Severed Fate"]
+usage_percent = 31.6
+
+[[profile]]
+character_id = "10000036"
+name = "Chongyun"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Blizzard Strayer"]
+usage_percent = 34.9
+
+[[profile]]
+character_id = "10000014"
+name = "Barbara"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_HP_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_CRITICAL_HURT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Maiden Beloved"]
+usage_percent = 42.5
+
+[[profile]]
+character_id = "10000021"
+name = "Amber"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+notes = ["The game showed no usage percentage for this set."]
+
+[[profile.recommended_sets]]
+sets = ["Wanderer's Troupe"]
+
+[[profile]]
+character_id = "10000064"
+name = "Yun Jin"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_DEFENSE_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_DEFENSE"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Husk of Opulent Dreams"]
+usage_percent = 64.9
+
+[[profile]]
+character_id = "10000076"
+name = "Faruzan"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Viridescent Venerer"]
+usage_percent = 30.8
+
+[[profile.recommended_sets]]
+sets = ["Emblem of Severed Fate"]
+usage_percent = 28.3
+
+[[profile]]
+character_id = "10000088"
+name = "Charlotte"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Gladiator's Finale", "Emblem of Severed Fate"]
+usage_percent = 37.7
+
+[[profile]]
+character_id = "10000080"
+name = "Mika"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_HP_PERCENT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+usage_percent = 57.8
+
+[[profile]]
+character_id = "10000039"
+name = "Diona"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_HP_PERCENT", "FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+usage_percent = 47.4
+
+[[profile]]
+character_id = "10000074"
+name = "Layla"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_HP_PERCENT", "FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Tenacity of the Millelith"]
+usage_percent = 66.9
+
+[[profile]]
+character_id = "10000148"
+name = "Alyosha"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+usage_percent = 61.2
+
+[[profile]]
+character_id = "10000137"
+name = "Valeriy"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ATTACK"],
+]
+notes = ["The game showed no usage percentage for this set."]
+
+[[profile.recommended_sets]]
+sets = ["Heart of the Furnace"]
+
+[[profile]]
+character_id = "10000056"
+name = "Kujou Sara"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ATTACK_PERCENT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Emblem of Severed Fate"]
+usage_percent = 81.8
+
+[[profile]]
+character_id = "10000067"
+name = "Collei"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ELEMENT_MASTERY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Deepwood Memories"]
+usage_percent = 72.6
+
+[[profile]]
+character_id = "10000115"
+name = "Dahlia"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_HP_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Noblesse Oblige"]
+usage_percent = 70.8
+
+[[profile]]
+character_id = "10000121"
+name = "Aino"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CHARGE_EFFICIENCY", "FIGHT_PROP_ELEMENT_MASTERY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Silken Moon's Serenade"]
+usage_percent = 87.1
+
+[[profile]]
+character_id = "10000044"
+name = "Xinyan"
+observed_at = "2026-11-08"
+game_version = "7.2"
+source = "In-game Best in Slot and Favoured Minor Affixes screen, which the game says is sourced from recently active players; entered by Ben from his own spreadsheet, 2026-11-08"
+confidence = "provisional"
+kind = "in-game"
+substat_tiers = [
+    ["FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL", "FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY"],
+]
+
+[[profile.recommended_sets]]
+sets = ["Gladiator's Finale"]
+usage_percent = 23.9
+
+[[profile.recommended_sets]]
+sets = ["Bloodstained Chivalry", "Pale Flame"]
+usage_percent = 22.2
 
 # Guide-site profiles (10 characters), transcribed 2026-11-08 from a spreadsheet a friend sent Ben
 # (Genshin_Artifact_Stat_Priorities.xlsx, sha256 in .claude/handoff-2026-11-08.md). The sheet
@@ -48,6 +508,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     ["FIGHT_PROP_ELEMENT_MASTERY"],
     ["FIGHT_PROP_CRITICAL_HURT"],
@@ -88,6 +549,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     ["FIGHT_PROP_HP_PERCENT"],
     ["FIGHT_PROP_CHARGE_EFFICIENCY"],
@@ -120,6 +582,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     ["FIGHT_PROP_ATTACK_PERCENT"],
     [{ stat = "FIGHT_PROP_CRITICAL", condition = "only with Favonius Sword" }],
@@ -155,6 +618,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", condition = "only up to the ER target; see notes" }],
     ["FIGHT_PROP_ELEMENT_MASTERY"],
@@ -199,6 +663,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     ["FIGHT_PROP_CHARGE_EFFICIENCY"],
     ["FIGHT_PROP_HP_PERCENT"],
@@ -238,6 +703,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     ["FIGHT_PROP_HP_PERCENT"],
     ["FIGHT_PROP_CHARGE_EFFICIENCY"],
@@ -276,6 +742,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     ["FIGHT_PROP_CHARGE_EFFICIENCY"],
     ["FIGHT_PROP_HP_PERCENT"],
@@ -314,6 +781,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     ["FIGHT_PROP_CHARGE_EFFICIENCY"],
     [{ stat = "FIGHT_PROP_CRITICAL", condition = "only with Favonius Lance" }],
@@ -361,6 +829,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", condition = "only up to the ER target; see notes" }],
     ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"],
@@ -399,6 +868,7 @@ observed_at = "2026-11-08"
 game_version = "7.2"
 source = "Third-party guide summary from a spreadsheet a friend sent Ben, checked 8 Nov 2026 at game 7.2; not the in-game recommendation; unverified"
 confidence = "provisional"
+kind = "guide"
 substat_tiers = [
     ["FIGHT_PROP_CRITICAL", "FIGHT_PROP_CRITICAL_HURT"],
     ["FIGHT_PROP_ATTACK_PERCENT"],

@@ -33,6 +33,7 @@ substat_tiers = [
 
 [[profile.recommended_sets]]
 sets = ["Test Set"]
+usage_percent = 70.1
 
 [[profile.recommended_sets]]
 sets = ["Test Set", "Test Set Two"]
@@ -233,3 +234,42 @@ def test_a_wrong_name_for_a_known_character_id_is_reported() -> None:
     text = GOOD.replace(', "Test Set Two"', "").replace('name = "Test Hero"', 'name = "Somebody"')
     problems = validate_profiles(load_profiles(text), snapshot())
     assert any("Somebody" in p and "Test Hero" in p for p in problems)
+
+
+# --- kind (in-game vs guide) and the game's usage percentage ---------------------------------
+
+
+def _as_guide(text: str) -> str:
+    return text.replace(
+        'confidence = "provisional"', 'confidence = "provisional"\nkind = "guide"', 1
+    )
+
+
+def test_kind_defaults_to_in_game_and_guides_are_marked() -> None:
+    assert load_profiles(GOOD)[0].kind == "in-game"
+    assert load_profiles(_as_guide(GOOD))[0].kind == "guide"
+
+
+def test_one_profile_per_character_and_kind() -> None:
+    both = load_profiles(GOOD + _as_guide(GOOD))
+    assert {p.kind for p in both} == {"in-game", "guide"}
+    with pytest.raises(ProfileError, match="duplicate"):
+        load_profiles(_as_guide(GOOD) + _as_guide(GOOD))
+
+
+def test_an_unknown_kind_is_rejected() -> None:
+    with pytest.raises(ProfileError):
+        load_profiles(
+            GOOD.replace(
+                'confidence = "provisional"', 'confidence = "provisional"\nkind = "rumour"', 1
+            )
+        )
+
+
+def test_usage_percent_is_kept_and_bounded() -> None:
+    (p,) = load_profiles(GOOD)
+    assert p.recommended_sets[0].usage_percent == 70.1
+    assert p.recommended_sets[1].usage_percent is None
+    for bad in ("-1", "100.5", "true", '"70"'):
+        with pytest.raises(ProfileError):
+            load_profiles(GOOD.replace("usage_percent = 70.1", f"usage_percent = {bad}"))

@@ -18,7 +18,7 @@ def _render(text: str) -> str:
 
 def test_tiers_render_best_first_with_conditions_visible() -> None:
     out = _render(GOOD)
-    assert "Test Hero (10000002) [provisional] read 2026-11-08 at game 7.2" in out
+    assert "Test Hero (10000002) [provisional, in-game] read 2026-11-08 at game 7.2" in out
     assert "ATK% > HP (only with a test weapon)" in out
 
 
@@ -33,7 +33,7 @@ def test_ties_within_a_tier_are_joined_with_a_slash() -> None:
 def test_main_stats_sets_and_references_are_shown_with_conditions() -> None:
     out = _render(GOOD)
     assert "circlet: ATK%, HP (only at C6)" in out
-    assert "Test Set (best)" in out
+    assert "Test Set (best, 70.1% of players)" in out
     assert "Test Set + Test Set Two (alternative: if nobody else uses the first set)" in out
     assert "Test Guide" in out and "ER target about 120%" in out
 
@@ -80,3 +80,12 @@ def test_profiles_command_survives_unreadable_input(
     assert main(["profiles", "--file", str(big)]) == 1
     err = capsys.readouterr().err
     assert err.count("Traceback") == 0 and "too large" in err
+
+
+def test_kind_and_usage_percent_are_rendered() -> None:
+    out = _render(
+        GOOD.replace('confidence = "provisional"', 'confidence = "provisional"\nkind = "guide"', 1)
+    )
+    assert "[provisional, guide]" in out
+    assert "Test Set (best, 70.1% of players)" in out
+    assert "[provisional, in-game]" in _render(GOOD)

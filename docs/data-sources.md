@@ -104,3 +104,25 @@ guide pages (at most 6 fetches per character, one at a time, then one re-check f
 Treat this as a manual research aid, not an ingestion pipeline: if weapon data is ever fetched by
 the app, each host needs its terms read first and an allowlist entry as described above.
 
+### Second research batch: guide profiles for 95 characters (2026-11-08)
+The same manual method (Claude's web tools, never the app) covered every other playable character:
+sets, main stats, substat ranking and weapons. 94 + 112 verification fetches were single pages, at
+most six fetches per character, one at a time, in waves of four researchers, then one re-check fetch
+per page by a second agent. 206 pages were read, 74% from three sites:
+
+| Host | Pages cited | Notes |
+|---|---|---|
+| genshin-builds.com | 85 | titled for the game version, no update date |
+| gamewith.net | 71 | shows an update date |
+| game8.co | 35 | shows an update date |
+| hoyobuild.com | 2 | terms not reviewed |
+| kaption.one | 2 | terms not reviewed |
+| timesaver.gg | 1 | terms not reviewed |
+
+Blocked to automated fetches and not used or circumvented: prydwen.gg (HTTP 403; its robots.txt allows
+character pages with a crawl-delay of 10, but the pages and its terms page refused the fetch),
+icy-veins.com, sportskeeda.com. The three smallest hosts above were chosen by the researchers during
+the gap-fill round; their terms have not been read, so treat their five citations as provisional.
+Facts only (names, ranks, URLs, stated freshness) are stored; condition and note wording in the
+profiles is a short paraphrase, never a quotation.
+

@@ -42,6 +42,18 @@ Status legend: [ ] todo, [x] done. Update as you go and add newly discovered tas
 - [ ] Per-character recommended sets, main stats, substat priority, weapon list, sourced from the curated profiles
 - [ ] Every recommendation carries `source`, `data_version` and a `confidence` label
 
+- [x] Guide research for the other 95 characters (87 new + weapons for the 8 sheet-only ones), 2026-11-08: 68 agents, 206 pages, 3685 claims re-checked by a second agent (3.5% failed and were dropped), 0 snapshot-name or weapon-type problems. 125 profiles now cover every playable character (28 in-game + 97 guide). All provisional
+- [ ] Guide data follow-ups: 3 characters rest on one current page (Kaedehara Kazuha, Raiden Shogun, Yaoyao); 22 characters have no agreed best set because current sources disagree (the profile says so); 4 have no best weapon. Re-research after the next patch. Read the terms of hoyobuild.com, kaption.one and timesaver.gg or stop citing them
+- [ ] Ask the friend with the guide sheet for the in-game table of their characters: in-game data replaces guide data wherever it exists
+
+## Phase 4c: Team recommendations v1 (no simulation; added 2026-11-08 at Ben's request)
+The app is meant to be an all-rounder, so teams come before the heavy Phase 8 simulation, built the same trustworthy way as the character profiles.
+- [ ] Research public guide pages for recommended team comps per character (members, roles, why it works), same method as the profiles: two current pages, second-agent verification, sources and freshness recorded, all `provisional`
+- [ ] Curated `teams` data format: members, roles (main DPS, sub-DPS, support, healer, shielder), element resonance, stated requirements (for example ER targets), provenance; validated against the snapshot
+- [ ] Roster-aware suggestions: which curated teams the player can field with owned characters, ranked with the build scores (weakest member and slot), saying what to improve; explainable, no invented numbers
+- [ ] Team-level build advice: per-member targets that depend on the team (for example Energy Recharge), shown as sourced notes until Phase 8 can compute them
+- [ ] `genshin-companion teams` command first; the UI screen later (Phase 4b). Phase 8's simulated `team_rankings.json` later refines the ranking, it does not replace this
+
 ## Phase 4b: Local API and UI shell
 - [ ] Local backend (FastAPI or similar) exposing the scoring, builds, roster and team-ranking data; the CLI and the UI both use it
 - [ ] Web UI served by that backend, runnable in a normal browser first (shell-agnostic)
@@ -105,8 +117,8 @@ Scope principle: never brute-force every variable (character x level x C0-C6 x t
 - [ ] `validate_profiles` cannot check a main stat is legal for its slot (snapshot main stats carry no slot). Needs equip-type to main-stat pools from data, not memory
 - [x] Recommended weapons researched online (the game has none): 2 rounds, 26 research agents, every cited claim re-checked against the live page by a second agent (511 supported, 13 flagged and excluded). `recommended_weapons` added to the format (name, tier, sources with url/accessed/as_of/rank), 135 options across the 28 in-game profiles, names checked against the snapshot and weapon type against the character. Awaiting Ben's review before commit
 - [ ] Weapon-type check inside `validate_profiles` needs a data-sourced weapon-type map (the generator used one derived from Ben's roster; the snapshot itself does not pair character and weapon type names with ints)
-- [ ] Weapons for the 8 guide-only characters (Mitya, Nilou, Qiqi, Illuga, Candace, Fischl, Yanfei, Chevreuse) are not researched; 16 cited pages are stale and 4 undated (kept visible, never counted towards `best`)
-- [ ] Data for characters beyond the 28: searched 2026-11-08. Only lead is Prydwen.gg per-character WEAPON usage percentages (from Enka-connected profiles, large samples, refreshed ~07 Nov 2026); it blocks automated fetches (HTTP 403, terms page unreadable; robots.txt allows character pages, crawl-delay 10), so NOT fetched or worked around. No public source found for main-stat/substat percentages; HoYoLAB wiki recommendations are the same HoYoverse data but scraping is barred by their ToS. Best path: ask the friend with the guide sheet for the same in-game table for their characters (covers the 8 guide-only ones); Ben may screenshot a few Prydwen pages by hand
+- [x] Weapons for the 8 guide-only characters (Mitya, Nilou, Qiqi, Illuga, Candace, Fischl, Yanfei, Chevreuse) are not researched; 16 cited pages are stale and 4 undated (kept visible, never counted towards `best`) (superseded by the 95-character research below)
+- [x] Data for characters beyond the 28: searched 2026-11-08. Only lead is Prydwen.gg per-character WEAPON usage percentages (from Enka-connected profiles, large samples, refreshed ~07 Nov 2026); it blocks automated fetches (HTTP 403, terms page unreadable; robots.txt allows character pages, crawl-delay 10), so NOT fetched or worked around. No public source found for main-stat/substat percentages; HoYoLAB wiki recommendations are the same HoYoverse data but scraping is barred by their ToS. Best path: ask the friend with the guide sheet for the same in-game table for their characters (covers the 8 guide-only ones); Ben may screenshot a few Prydwen pages by hand (superseded by the 95-character research below)
 - [ ] Imported pieces are mostly low rarity/level: golden fixtures from Ben's own account will be weak; consider more mature artifacts (Enka's documented example account verified the roll maths on 20 five-star pieces)
 
 ## Decisions made

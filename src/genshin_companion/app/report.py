@@ -125,6 +125,9 @@ def render_profile(p: CharacterProfile) -> str:
             out.append(f"    set: {' + '.join(option.sets)} ({option.tier}{share}{why})")
     else:
         out.append("    sets: (not recorded)")
+    for weapon in p.recommended_weapons:
+        cites = ", ".join(f"{src.name} #{src.rank} {src.as_of}" for src in weapon.sources)
+        out.append(f"    weapon: {weapon.name} ({weapon.tier}; {cites})")
     if p.recommended_main_stats:
         for slot, choices in p.recommended_main_stats.items():
             out.append(f"    {slot}: {', '.join(_choice(c) for c in choices)}")

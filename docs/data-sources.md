@@ -82,3 +82,25 @@ marked verbatim. **Nothing here is legal advice; items marked OPEN need a human 
    offline test oracle only.
 3. genshin-db (pinned tag) for set bonus text, descriptions and per-item "added in version".
 4. Allowlist (initial): `enka.network`, `raw.githubusercontent.com`, `gi.yatta.moe`.
+
+## Research-only sources: recommended weapons (read 2026-11-08)
+The game has no weapon recommendation, so per-character weapon lists were researched from public
+guide pages by hand (by Claude through its own web tools, **not** by the app: the app's allowlist
+is unchanged and never contacts these hosts). Facts only (weapon name, rank on the page, page URL,
+the page's stated freshness) are recorded in `profiles/characters.toml`; no prose or art is copied.
+
+| Host | Used for | Notes |
+|---|---|---|
+| game8.co | weapon rankings | pages show an update date |
+| gamewith.net | weapon rankings | pages show an update date |
+| genshin-builds.com | weapon rankings | titled for the game version; no update date |
+| genshin.gg | weapon rankings | often undated |
+| keqingmains.com | weapon rankings | quick guides are frequently several versions out of date |
+| pockettactics.com | weapon rankings | dated, several pages from 2025 |
+
+Blocked to automated fetches and **not used or circumvented**: icy-veins.com (HTTP 403),
+sportskeeda.com (HTTP 405). No terms-of-use review was done per site; access was limited to single
+guide pages (at most 6 fetches per character, one at a time, then one re-check fetch per page).
+Treat this as a manual research aid, not an ingestion pipeline: if weapon data is ever fetched by
+the app, each host needs its terms read first and an allowlist entry as described above.
+

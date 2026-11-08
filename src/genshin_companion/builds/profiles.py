@@ -77,6 +77,17 @@ def _plain_number(value: Any) -> Any:
     return value
 
 
+def _check_https_url(value: str) -> str:
+    parts = urlsplit(value)
+    if not value.isprintable() or parts.scheme != "https" or not parts.hostname:
+        msg = "reference urls must be https with a host"
+        raise ValueError(msg)
+    if parts.username is not None or parts.password is not None:
+        msg = "reference urls must not carry credentials"
+        raise ValueError(msg)
+    return value
+
+
 def _check_stat_id(value: str) -> str:
     if len(value) > MAX_STAT_ID or not _STAT_RE.fullmatch(value):
         msg = f"{value[:40]!r} is not a canonical FIGHT_PROP_* stat id"
@@ -150,14 +161,44 @@ class Reference(BaseModel):
     @field_validator("url")
     @classmethod
     def _plain_https(cls, value: str) -> str:
-        parts = urlsplit(value)
-        if not value.isprintable() or parts.scheme != "https" or not parts.hostname:
-            msg = "reference urls must be https with a host"
-            raise ValueError(msg)
-        if parts.username is not None or parts.password is not None:
-            msg = "reference urls must not carry credentials"
+        return _check_https_url(value)
+
+
+class WeaponSource(BaseModel):
+    """One public page that recommends a weapon: where, when read, how fresh it says it is, rank."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid", hide_input_in_errors=True)
+
+    name: Name
+    url: str = Field(max_length=MAX_TEXT)
+    accessed: date
+    # The page's own statement of how current it is, copied as given: "v7.2", "2026-11-07",
+    # "v4.6 (stale)", "undated". Never inferred.
+    as_of: Annotated[str, Field(min_length=1, max_length=40), _PRINTABLE]
+    rank: int = Field(ge=1, le=50)  # position in that page's ranking, 1 = best
+
+    @field_validator("url")
+    @classmethod
+    def _plain_https(cls, value: str) -> str:
+        return _check_https_url(value)
+
+    @field_validator("rank", mode="before")
+    @classmethod
+    def _plain_int(cls, value: Any) -> Any:
+        if isinstance(value, bool) or not isinstance(value, int):
+            msg = "rank must be a whole number"
             raise ValueError(msg)
         return value
+
+
+class WeaponOption(BaseModel):
+    """A recommended weapon. Its stats come from the data snapshot, never from this file."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    name: Name
+    tier: Literal["best", "alternative"] = "best"
+    sources: list[WeaponSource] = Field(min_length=1, max_length=10)
 
 
 class CharacterProfile(BaseModel):
@@ -174,6 +215,7 @@ class CharacterProfile(BaseModel):
     # guide opinion. A character may have one profile of each kind; scoring prefers in-game.
     kind: Literal["in-game", "guide"] = "in-game"
     recommended_sets: list[SetOption] = Field(default=[], max_length=MAX_LIST)
+    recommended_weapons: list[WeaponOption] = Field(default=[], max_length=MAX_LIST)
     # Acceptable main stats per slot (flower and plume are fixed). The list is "as the source
     # lists them", not a ranking; choices with a condition are conditional alternatives.
     recommended_main_stats: dict[
@@ -255,6 +297,15 @@ class CharacterProfile(BaseModel):
                 raise ValueError(msg)
         return value
 
+    @field_validator("recommended_weapons")
+    @classmethod
+    def _unique_weapons(cls, value: list[WeaponOption]) -> list[WeaponOption]:
+        names = [w.name for w in value]
+        if len(set(names)) != len(names):
+            msg = "a weapon is listed twice"
+            raise ValueError(msg)
+        return value
+
     @model_validator(mode="after")
     def _one_source_of_truth_for_substats(self) -> CharacterProfile:
         if self.substat_weights and self.substat_tiers:
@@ -305,6 +356,7 @@ def validate_profiles(profiles: list[CharacterProfile], snapshot: Snapshot) -> l
     sets = {s.name for s in snapshot.artifact_sets if s.name}
     substats = {t.stat for t in snapshot.substat_tiers}
     main_stats = {m.stat for m in snapshot.main_stats}
+    weapons = {w.name for w in snapshot.weapons if w.name}
     for p in profiles:
         known = characters.get(p.character_id)
         if known is None:
@@ -317,6 +369,9 @@ def validate_profiles(profiles: list[CharacterProfile], snapshot: Snapshot) -> l
             for name in option.sets:
                 if name not in sets:
                     problems.append(f"{p.name}: set {name!r} is not in the snapshot")
+        for weapon in p.recommended_weapons:
+            if weapon.name not in weapons:
+                problems.append(f"{p.name}: weapon {weapon.name!r} is not in the snapshot")
         for stat in sorted(profile_stats(p)):
             if stat not in substats:
                 problems.append(f"{p.name}: {stat} is not a substat that can roll")

@@ -21,7 +21,16 @@
 # The in-game table gives sets, favoured substats and favoured main stats for sands, goblet and
 # circlet (flower and plume are always flat HP / flat ATK, so they are not listed). Main stats are
 # in the order the game lists them (highest use first) with `usage_percent`; a bare stat id means
-# the game showed no percentage. Recommended weapons are not recorded yet.
+# the game showed no percentage.
+#
+# Recommended weapons are NOT in the game. They come from public third-party guide pages
+# (Game8, GameWith, GenshinBuilds, genshin.gg, Keqing Mains, Pocket Tactics), read on 2026-11-08
+# and each independently re-checked against the live page. Every weapon lists its sources with
+# the page's own stated freshness (`as_of`: a date, a game version, "(stale)" or "undated") and
+# rank on that page. `best` = at least two CURRENT pages (dated since 2026-06-01 or stating 7.x)
+# list it with rank 3 or better on one; `alternative` = weaker agreement. Stale and undated pages
+# are kept as visible references but do not count towards `best`. Weapon names are checked
+# against the data snapshot, which is also where a weapon's stats come from.
 
 [[profile]]
 character_id = "10000016"
@@ -44,6 +53,104 @@ sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 82.5 }, { stat = 
 goblet = [{ stat = "FIGHT_PROP_FIRE_ADD_HURT", usage_percent = 81.3 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 13.8 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.4 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 64.3 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 27.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 5.5 }]
 
+[[profile.recommended_weapons]]
+name = "A Thousand Blazing Suns"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/diluc"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22351"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Beacon of the Reed Sea"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/diluc"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22351"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Redhorn Stonethresher"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/diluc"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22351"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 6
+
+[[profile.recommended_weapons]]
+name = "Verdict"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/diluc"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22351"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Fang of the Mountain King"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/diluc"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22351"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 5
+
+[[profile.recommended_weapons]]
+name = "Gest of the Mighty Wolf"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22351"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
 [[profile]]
 character_id = "10000143"
 name = "Vesna"
@@ -64,6 +171,74 @@ usage_percent = 94.8
 sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 93.6 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 2.7 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.6 }]
 goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 92.2 }, { stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 3.2 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.5 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 76.2 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 19.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 2.2 }]
+
+[[profile.recommended_weapons]]
+name = "Beyond the Chrysalis"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/vesna"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76472"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Whitelake Frostfeather"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/vesna"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76472"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Absolution"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/vesna"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76472"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Azurelight"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/vesna"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76472"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
 
 [[profile]]
 character_id = "10000111"
@@ -86,6 +261,68 @@ sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 94.4 }, { stat = 
 goblet = [{ stat = "FIGHT_PROP_ELEC_ADD_HURT", usage_percent = 81.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 15.1 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.1 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 66.6 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 30 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 1.8 }]
 
+[[profile.recommended_weapons]]
+name = "Vivid Notions"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/51628"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/varesa"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Kagura's Verity"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/51628"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/varesa"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Lost Prayer to the Sacred Winds"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/51628"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/varesa"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Reliquary of Truth"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/varesa"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
 [[profile]]
 character_id = "10000007-705"
 name = "Traveler"
@@ -106,6 +343,51 @@ usage_percent = 42
 sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 82.8 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 9.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 3.3 }]
 goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 80.6 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 7.8 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 3.2 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 70.3 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 20 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.7 }]
+
+[[profile.recommended_weapons]]
+name = "Exaiphanes Blade"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/traveler_cryo"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/29672"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Primordial Jade Cutter"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/traveler_cryo"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/29672"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Whitelake Frostfeather"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/29672"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
 
 [[profile]]
 character_id = "10000006"
@@ -132,6 +414,56 @@ sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 55.6 }, { stat = 
 goblet = [{ stat = "FIGHT_PROP_ELEC_ADD_HURT", usage_percent = 68.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 17.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 8 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 55.7 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 28.9 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 6.6 }]
 
+[[profile.recommended_weapons]]
+name = "Kagura's Verity"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/lisa"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lisa"
+accessed = 2026-11-08
+as_of = "2026-07-05"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Reliquary of Truth"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/lisa"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Skyward Atlas"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lisa"
+accessed = 2026-11-08
+as_of = "2026-07-05"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Vivid Notions"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/lisa"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
 [[profile]]
 character_id = "10000109"
 name = "Yumemizuki Mizuki"
@@ -153,6 +485,127 @@ sands = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 89.7 }, { stat =
 goblet = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 79.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 9.7 }, { stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 8.1 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 48.8 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 31.2 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 17 }]
 
+[[profile.recommended_weapons]]
+name = "Sunny Morning Sleep-In"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/yumemizuki_mizuki"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/mizuki"
+accessed = 2026-11-08
+as_of = "2025-02-12 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/492414"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/51916"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "A Thousand Floating Dreams"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/yumemizuki_mizuki"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/mizuki"
+accessed = 2026-11-08
+as_of = "2025-02-12 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/492414"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/51916"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Starcaller's Watch"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/yumemizuki_mizuki"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/mizuki"
+accessed = 2026-11-08
+as_of = "2025-02-12 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/51916"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Fragments"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/yumemizuki_mizuki"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/mizuki"
+accessed = 2026-11-08
+as_of = "2025-02-12 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/51916"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Reliquary of Truth"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/492414"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
 [[profile]]
 character_id = "10000023"
 name = "Xiangling"
@@ -173,6 +626,124 @@ usage_percent = 83
 sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 74.1 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 17.6 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 5.3 }]
 goblet = [{ stat = "FIGHT_PROP_FIRE_ADD_HURT", usage_percent = 84.1 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 12 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.3 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 65.2 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 27.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.3 }]
+
+[[profile.recommended_weapons]]
+name = "Engulfing Lightning"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/xiangling"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/xiangling"
+accessed = 2026-11-08
+as_of = "2026-03-18 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/xiangling-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.5 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297530"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22339"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Staff of the Scarlet Sands"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/xiangling"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/xiangling"
+accessed = 2026-11-08
+as_of = "2026-03-18 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/xiangling-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.5 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297530"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22339"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Staff of Homa"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/xiangling"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/xiangling"
+accessed = 2026-11-08
+as_of = "2026-03-18 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297530"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22339"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Lumidouce Elegy"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/xiangling"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
 
 [[profile]]
 character_id = "10000034"
@@ -199,6 +770,123 @@ sands = [{ stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 82.3 }, { stat =
 goblet = [{ stat = "FIGHT_PROP_ROCK_ADD_HURT", usage_percent = 70.3 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 23.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 3.1 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 50 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 35.1 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 11.2 }]
 
+[[profile.recommended_weapons]]
+name = "Redhorn Stonethresher"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/noelle"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/noelle"
+accessed = 2026-11-08
+as_of = "2026-05-27 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297523"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22346"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Serpent Spine"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/noelle"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297523"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22346"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Skyward Pride"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/noelle"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/noelle"
+accessed = 2026-11-08
+as_of = "2026-05-27 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297523"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22346"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Whiteblind"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/eN/character/noelle"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/noelle"
+accessed = 2026-11-08
+as_of = "2026-05-27 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297523"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22346"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 5
+
 [[profile]]
 character_id = "10000108"
 name = "Lan Yan"
@@ -219,6 +907,132 @@ usage_percent = 83.4
 sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 86.5 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 6 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 5.8 }]
 goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 86 }, { stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 8.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 1.6 }]
 circlet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 76.6 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 12.8 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 7.6 }]
+
+[[profile.recommended_weapons]]
+name = "Starcaller's Watch"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lan_yan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lan-yan"
+accessed = 2026-11-08
+as_of = "2026-03-23 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/49958"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/486709"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Thrilling Tales of Dragon Slayers"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lan_yan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lan-yan"
+accessed = 2026-11-08
+as_of = "2026-03-23 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/49958"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/486709"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Wandering Evenstar"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/49958"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/486709"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons]]
+name = "Favonius Codex"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lan_yan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/49958"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Angelos' Heptades"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lan_yan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Memory of Dust"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lan-yan"
+accessed = 2026-11-08
+as_of = "2026-03-23 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/486709"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
 
 [[profile]]
 character_id = "10000083"
@@ -241,6 +1055,166 @@ sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 59.4 }, { stat = 
 goblet = [{ stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 73.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 14.9 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 4.8 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 54.5 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 33.6 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 5.4 }]
 
+[[profile.recommended_weapons]]
+name = "Favonius Sword"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lynette"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lynette"
+accessed = 2026-11-08
+as_of = "2025-10-23 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24368"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/345879"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Sword"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lynette"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lynette"
+accessed = 2026-11-08
+as_of = "2025-10-23 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24368"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/345879"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Freedom-Sworn"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lynette"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lynette"
+accessed = 2026-11-08
+as_of = "2025-10-23 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24368"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/345879"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Fleuve Cendre Ferryman"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lynette"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/lynette"
+accessed = 2026-11-08
+as_of = "2025-10-23 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24368"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 5
+
+[[profile.recommended_weapons]]
+name = "Amenoma Kageuchi"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lynette"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24368"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/345879"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons]]
+name = "Skyward Blade"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/lynette"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24368"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 4
+
 [[profile]]
 character_id = "10000043"
 name = "Sucrose"
@@ -261,6 +1235,116 @@ usage_percent = 90.9
 sands = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 81 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 11 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 5.9 }]
 goblet = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 72.7 }, { stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 12.5 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 9.3 }]
 circlet = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 74.6 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 11.2 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 7.9 }]
+
+[[profile.recommended_weapons]]
+name = "A Thousand Floating Dreams"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/sucrose"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22344"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297525"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Fragments"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/sucrose"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/sucrose"
+accessed = 2026-11-08
+as_of = "2026-04-25 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22344"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297525"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Sunny Morning Sleep-In"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/sucrose"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/sucrose"
+accessed = 2026-11-08
+as_of = "2026-04-25 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22344"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297525"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Wandering Evenstar"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/sucrose"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22344"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297525"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
 
 [[profile]]
 character_id = "10000015"
@@ -287,6 +1371,74 @@ sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 69.4 }, { stat = 
 goblet = [{ stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 78.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 14.7 }, { stat = "FIGHT_PROP_PHYSICAL_ADD_HURT", usage_percent = 1.7 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 48.5 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 41.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.5 }]
 
+[[profile.recommended_weapons]]
+name = "Mistsplitter Reforged"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/kaeya"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Pocket Tactics"
+url = "https://www.pockettactics.com/genshin-impact/kaeya"
+accessed = 2026-11-08
+as_of = "2025-11-26 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297516"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Freedom-Sworn"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22353"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Absolution"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/kaeya"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Primordial Jade Cutter"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297516"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Skyward Blade"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22353"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
 [[profile]]
 character_id = "10000036"
 name = "Chongyun"
@@ -307,6 +1459,68 @@ usage_percent = 34.9
 sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 75.8 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 13.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 6.1 }]
 goblet = [{ stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 77.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 15.4 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 2.5 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 50.8 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 38.6 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 7.2 }]
+
+[[profile.recommended_weapons]]
+name = "Serpent Spine"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297532"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/chongyun"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Beacon of the Reed Sea"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297532"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/chongyun"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 5
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Greatsword"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297532"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/chongyun"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Wolf's Gravestone"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297532"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
 
 [[profile]]
 character_id = "10000014"
@@ -329,6 +1543,141 @@ sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 76.9 }, { stat = "FIG
 goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 80.1 }, { stat = "FIGHT_PROP_WATER_ADD_HURT", usage_percent = 8.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.7 }]
 circlet = [{ stat = "FIGHT_PROP_HEAL_ADD", usage_percent = 66 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 21.1 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 4.6 }]
 
+[[profile.recommended_weapons]]
+name = "Thrilling Tales of Dragon Slayers"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/barbara"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/barbara-quickguide/"
+accessed = 2026-11-08
+as_of = "v3.2 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22352"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297517"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Everlasting Moonglow"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/barbara"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/barbara-quickguide/"
+accessed = 2026-11-08
+as_of = "v3.2 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22352"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297517"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Favonius Codex"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/barbara"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22352"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297517"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Prototype Amber"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/barbara"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/barbara-quickguide/"
+accessed = 2026-11-08
+as_of = "v3.2 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22352"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297517"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Otherworldly Story"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22352"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297517"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
 [[profile]]
 character_id = "10000021"
 name = "Amber"
@@ -350,6 +1699,62 @@ sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 71.1 }, { stat = 
 goblet = [{ stat = "FIGHT_PROP_FIRE_ADD_HURT", usage_percent = 73.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 16.2 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 3.1 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 49.2 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 39.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.1 }]
 
+[[profile.recommended_weapons]]
+name = "The First Great Magic"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297535"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/amber"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Aqua Simulacra"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297535"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/amber"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Elegy for the End"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297535"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Favonius Warbow"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/297535"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
 [[profile]]
 character_id = "10000064"
 name = "Yun Jin"
@@ -370,6 +1775,144 @@ usage_percent = 64.9
 sands = [{ stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 76.5 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 19.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 2 }]
 goblet = [{ stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 92.1 }, { stat = "FIGHT_PROP_ROCK_ADD_HURT", usage_percent = 4.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 1 }]
 circlet = [{ stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 82.3 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 12.5 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 3.3 }]
+
+[[profile.recommended_weapons]]
+name = "Prototype Starglitter"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/314345"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/yunjin-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.4 (stale)"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/yun_jin"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24116"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Engulfing Lightning"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/314345"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/yunjin-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.4 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/yun_jin"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Favonius Lance"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/314345"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/yunjin-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.4 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24116"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "\"The Catch\""
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/314345"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/yunjin-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.4 (stale)"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/yun_jin"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Footprint of the Rainbow"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/314345"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/yunjin-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.4 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24116"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Skyward Spine"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/24116"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
 
 [[profile]]
 character_id = "10000076"
@@ -396,6 +1939,167 @@ sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 82.2 }, { stat
 goblet = [{ stat = "FIGHT_PROP_WIND_ADD_HURT", usage_percent = 62.9 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 26.9 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 4.3 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 69.3 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 18.2 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 7.8 }]
 
+[[profile.recommended_weapons]]
+name = "Elegy for the End"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/391897"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/faruzan-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/faruzan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34437"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Favonius Warbow"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/391897"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/faruzan-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/faruzan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34437"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Bow"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/391897"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/faruzan-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/faruzan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34437"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Fading Twilight"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/391897"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/faruzan-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/faruzan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34437"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 6
+
+[[profile.recommended_weapons]]
+name = "End of the Line"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/faruzan-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/faruzan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34437"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 5
+
+[[profile.recommended_weapons]]
+name = "Breezeborne Refrain"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/391897"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
 [[profile]]
 character_id = "10000088"
 name = "Charlotte"
@@ -416,6 +2120,120 @@ usage_percent = 37.7
 sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 73.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 22.2 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 2.7 }]
 goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 85.1 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 7.8 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 3.5 }]
 circlet = [{ stat = "FIGHT_PROP_HEAL_ADD", usage_percent = 56.7 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 21 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 15.5 }]
+
+[[profile.recommended_weapons]]
+name = "Favonius Codex"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/412428"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/charlotte-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.7 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/charlotte"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/39069"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Prototype Amber"
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/charlotte-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.7 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/charlotte"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/39069"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Oathsworn Eye"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/412428"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/charlotte-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.7 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/charlotte"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Thrilling Tales of Dragon Slayers"
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/charlotte-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.7 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/charlotte"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/39069"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Skyward Atlas"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/412428"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
 
 [[profile]]
 character_id = "10000080"
@@ -438,6 +2256,134 @@ sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 57 }, { stat = "FIGHT
 goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 85.9 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 5.1 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.6 }]
 circlet = [{ stat = "FIGHT_PROP_HEAL_ADD", usage_percent = 48.3 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 25 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 20.3 }]
 
+[[profile.recommended_weapons]]
+name = "Favonius Lance"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/390096"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/mika-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34440"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/mika"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Dialogues of the Desert Sages"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/390096"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/mika-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34440"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/mika"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Symphonist of Scents"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34440"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/mika"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Rightful Reward"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/390096"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/mika-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34440"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 6
+
+[[profile.recommended_weapons]]
+name = "Engulfing Lightning"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/mika-quickguide/"
+accessed = 2026-11-08
+as_of = "v4.6 (stale)"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34440"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/mika"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
 [[profile]]
 character_id = "10000039"
 name = "Diona"
@@ -458,6 +2404,75 @@ usage_percent = 47.4
 sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 62.9 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 31 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.2 }]
 goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 87.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 4.3 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 3.8 }]
 circlet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 66.1 }, { stat = "FIGHT_PROP_HEAL_ADD", usage_percent = 18.9 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 9.1 }]
+
+[[profile.recommended_weapons]]
+name = "Elegy for the End"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/305872"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/diona-quickguide/"
+accessed = 2026-11-08
+as_of = "v7.1"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Favonius Warbow"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/305872"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/diona-quickguide/"
+accessed = 2026-11-08
+as_of = "v7.1"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Bow"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/305872"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/diona-quickguide/"
+accessed = 2026-11-08
+as_of = "v7.1"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Recurve Bow"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/305872"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/diona-quickguide/"
+accessed = 2026-11-08
+as_of = "v7.1"
+rank = 6
 
 [[profile]]
 character_id = "10000074"
@@ -480,6 +2495,133 @@ sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 88.2 }, { stat = "FIG
 goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 88.9 }, { stat = "FIGHT_PROP_ICE_ADD_HURT", usage_percent = 6.3 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 1.8 }]
 circlet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 82.8 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 10.4 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 3.7 }]
 
+[[profile.recommended_weapons]]
+name = "Key of Khaj-Nisut"
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/layla/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/386486"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34439"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/layla"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Primordial Jade Cutter"
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/layla/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/386486"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34439"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/layla"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Favonius Sword"
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/layla/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/386486"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/layla"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Freedom-Sworn"
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/layla/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34439"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/layla"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 5
+
+[[profile.recommended_weapons]]
+name = "The Dockhand's Assistant"
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/34439"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/layla"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
 [[profile]]
 character_id = "10000148"
 name = "Alyosha"
@@ -500,6 +2642,166 @@ usage_percent = 61.2
 sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 75 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 21.8 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.6 }]
 goblet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 84.7 }, { stat = "FIGHT_PROP_ELEC_ADD_HURT", usage_percent = 7.4 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 4.1 }]
 circlet = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 58.8 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 28.3 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 7 }]
+
+[[profile.recommended_weapons]]
+name = "Engulfing Lightning"
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/alyosha/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606884"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76471"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/alyosha"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Favonius Lance"
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/alyosha/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606884"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76471"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/alyosha"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Tamayuratei no Ohanashi"
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/alyosha/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606884"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76471"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/alyosha"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Symphonist of Scents"
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/alyosha/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606884"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76471"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Song of the Vigil"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606884"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/76471"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/alyosha"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Skyward Spine"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606884"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/alyosha"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 5
 
 [[profile]]
 character_id = "10000137"
@@ -522,6 +2824,111 @@ sands = ["FIGHT_PROP_ATTACK_PERCENT", "FIGHT_PROP_CHARGE_EFFICIENCY"]
 goblet = ["FIGHT_PROP_ATTACK_PERCENT"]
 circlet = ["FIGHT_PROP_ATTACK_PERCENT"]
 
+[[profile.recommended_weapons]]
+name = "Summit Shaper"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606889"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/valeriy"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Aquila Favonia"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606889"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/valeriy"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Skyward Blade"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606889"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/valeriy"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Calamity of Eshu"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606889"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/valeriy"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Moonweaver's Dawn"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606889"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/valeriy"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 5
+
+[[profile.recommended_weapons]]
+name = "Finale of the Deep"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/606889"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/valeriy"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 6
+
 [[profile]]
 character_id = "10000056"
 name = "Kujou Sara"
@@ -542,6 +2949,57 @@ usage_percent = 81.8
 sands = [{ stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 67.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 26.7 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 2.9 }]
 goblet = [{ stat = "FIGHT_PROP_ELEC_ADD_HURT", usage_percent = 73.6 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 22.3 }, { stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 1.4 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 59.3 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 31.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 7.1 }]
+
+[[profile.recommended_weapons]]
+name = "Elegy for the End"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/336727"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/kujou_sara"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Skyward Harp"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/336727"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/kujou_sara"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Polar Star"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/336727"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/kujou_sara"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
 
 [[profile]]
 character_id = "10000067"
@@ -564,6 +3022,127 @@ sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 48.3 }, { stat = 
 goblet = [{ stat = "FIGHT_PROP_GRASS_ADD_HURT", usage_percent = 75.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 11.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 7.4 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 61.7 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 23.2 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 9.1 }]
 
+[[profile.recommended_weapons]]
+name = "Elegy for the End"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/382079"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/collei-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.8 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/collei"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/28969"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Favonius Warbow"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/382079"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/collei-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.8 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/collei"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/28969"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Polar Star"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/382079"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/collei-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.8 (stale)"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/collei"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Bow"
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/collei-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.8 (stale)"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/collei"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/28969"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Aqua Simulacra"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/382079"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
 [[profile]]
 character_id = "10000115"
 name = "Dahlia"
@@ -585,6 +3164,135 @@ sands = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 78.1 }, { stat = "FIG
 goblet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 92.8 }, { stat = "FIGHT_PROP_WATER_ADD_HURT", usage_percent = 2.7 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 2 }]
 circlet = [{ stat = "FIGHT_PROP_HP_PERCENT", usage_percent = 80.6 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 13 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 3.2 }]
 
+[[profile.recommended_weapons]]
+name = "Favonius Sword"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/516026"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/dahlia-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.7 (stale)"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/dahlia"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/44533"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Key of Khaj-Nisut"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/516026"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/dahlia-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.7 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/dahlia"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/44533"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "The Dockhand's Assistant"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/516026"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/dahlia-quickguide/"
+accessed = 2026-11-08
+as_of = "v5.7 (stale)"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/dahlia"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/44533"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Sword"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/516026"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/44533"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Fleuve Cendre Ferryman"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/516026"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/44533"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 5
+
 [[profile]]
 character_id = "10000121"
 name = "Aino"
@@ -605,6 +3313,164 @@ usage_percent = 87.1
 sands = [{ stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 53.2 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 36.8 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 6.7 }]
 goblet = [{ stat = "FIGHT_PROP_WATER_ADD_HURT", usage_percent = 51.8 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 26.2 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 12.9 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL", usage_percent = 64.7 }, { stat = "FIGHT_PROP_ELEMENT_MASTERY", usage_percent = 15.6 }, { stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 13.4 }]
+
+[[profile.recommended_weapons]]
+name = "Favonius Greatsword"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/537903"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/aino-quickguide/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/69272"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/aino"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Flame-Forged Insight"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/537903"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/aino-quickguide/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/69272"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/aino"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Makhaira Aquamarine"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/537903"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/aino-quickguide/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/69272"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/aino"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Master Key"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/537903"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/aino-quickguide/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/aino"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 4
+
+[[profile.recommended_weapons]]
+name = "Sacrificial Greatsword"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/537903"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/q/aino-quickguide/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/69272"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Skyward Pride"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/537903"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/69272"
+accessed = 2026-11-08
+as_of = "2026-11-08"
+rank = 3
 
 [[profile]]
 character_id = "10000044"
@@ -630,6 +3496,148 @@ usage_percent = 22.2
 sands = [{ stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 61.5 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 24.1 }, { stat = "FIGHT_PROP_CHARGE_EFFICIENCY", usage_percent = 7.6 }]
 goblet = [{ stat = "FIGHT_PROP_PHYSICAL_ADD_HURT", usage_percent = 55.9 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 15.4 }, { stat = "FIGHT_PROP_ATTACK_PERCENT", usage_percent = 12.4 }]
 circlet = [{ stat = "FIGHT_PROP_CRITICAL_HURT", usage_percent = 46 }, { stat = "FIGHT_PROP_CRITICAL", usage_percent = 33.2 }, { stat = "FIGHT_PROP_DEFENSE_PERCENT", usage_percent = 12.6 }]
+
+[[profile.recommended_weapons]]
+name = "Serpent Spine"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/305873"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 5
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/xinyan/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/xinyan-2/"
+accessed = 2026-11-08
+as_of = "v2.1 (stale)"
+rank = 4
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/xinyan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 3
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22923"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 2
+
+[[profile.recommended_weapons]]
+name = "Skyward Pride"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/305873"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/xinyan/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/xinyan-2/"
+accessed = 2026-11-08
+as_of = "v2.1 (stale)"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/xinyan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 2
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22923"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 3
+
+[[profile.recommended_weapons]]
+name = "Redhorn Stonethresher"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/305873"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "genshin.gg"
+url = "https://genshin.gg/characters/xinyan/"
+accessed = 2026-11-08
+as_of = "undated"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/xinyan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Wolf's Gravestone"
+
+[[profile.recommended_weapons.sources]]
+name = "GenshinBuilds"
+url = "https://genshin-builds.com/en/character/xinyan"
+accessed = 2026-11-08
+as_of = "v7.2"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22923"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 1
+
+[[profile.recommended_weapons]]
+name = "Snow-Tombed Starsilver"
+tier = "alternative"
+
+[[profile.recommended_weapons.sources]]
+name = "Game8"
+url = "https://game8.co/games/Genshin-Impact/archives/305873"
+accessed = 2026-11-08
+as_of = "2026-11-06"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "Keqing Mains"
+url = "https://keqingmains.com/xinyan-2/"
+accessed = 2026-11-08
+as_of = "v2.1 (stale)"
+rank = 6
+
+[[profile.recommended_weapons.sources]]
+name = "GameWith"
+url = "https://gamewith.net/genshin-impact/article/show/22923"
+accessed = 2026-11-08
+as_of = "2026-11-07"
+rank = 6
 
 # Guide-site profiles (10 characters), transcribed 2026-11-08 from a spreadsheet a friend sent Ben
 # (Genshin_Artifact_Stat_Priorities.xlsx, sha256 in .claude/handoff-2026-11-08.md). The sheet

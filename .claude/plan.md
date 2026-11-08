@@ -99,7 +99,9 @@ Scope principle: never brute-force every variable (character x level x C0-C6 x t
 - [x] Ben confirmed the order of the four favoured substats means nothing (one tie tier is right). Mika and Dahlia have both an in-game and a guide profile that disagree; scoring prefers in-game
 - [ ] Scoring rule that turns `substat_tiers` into weights (one documented rule, tuned with Ben); conditional stats (`only with Favonius Lance`, `only up to the ER target`) default to weight 0 until Ben decides; ER/EM/HP targets are only free-text notes so far
 - [ ] `validate_profiles` cannot check a main stat is legal for its slot (snapshot main stats carry no slot). Needs equip-type to main-stat pools from data, not memory
-- [ ] `recommended_weapons` field (validated against the snapshot weapons) when Ben's screenshots arrive
+- [x] Recommended weapons researched online (the game has none): 2 rounds, 26 research agents, every cited claim re-checked against the live page by a second agent (511 supported, 13 flagged and excluded). `recommended_weapons` added to the format (name, tier, sources with url/accessed/as_of/rank), 135 options across the 28 in-game profiles, names checked against the snapshot and weapon type against the character. Awaiting Ben's review before commit
+- [ ] Weapon-type check inside `validate_profiles` needs a data-sourced weapon-type map (the generator used one derived from Ben's roster; the snapshot itself does not pair character and weapon type names with ints)
+- [ ] Weapons for the 8 guide-only characters (Mitya, Nilou, Qiqi, Illuga, Candace, Fischl, Yanfei, Chevreuse) are not researched; 16 cited pages are stale and 4 undated (kept visible, never counted towards `best`)
 - [ ] Imported pieces are mostly low rarity/level: golden fixtures from Ben's own account will be weak; consider more mature artifacts (Enka's documented example account verified the roll maths on 20 five-star pieces)
 
 ## Decisions made

@@ -327,3 +327,87 @@ def test_a_percent_on_a_substat_is_rejected() -> None:
     assert bad != GOOD
     with pytest.raises(ProfileError):
         load_profiles(bad)
+
+
+# --- recommended weapons, each with its own cited sources -------------------------------------
+
+WEAPON_BLOCK = """
+[[profile.recommended_weapons]]
+name = "Test Sword"
+tier = "best"
+
+[[profile.recommended_weapons.sources]]
+name = "Test Guide"
+url = "https://example.com/weapons"
+accessed = "2026-11-08"
+as_of = "v7.2"
+rank = 1
+
+[[profile.recommended_weapons.sources]]
+name = "Old Guide"
+url = "https://example.org/old"
+accessed = "2026-11-08"
+as_of = "v4.6 (stale)"
+rank = 3
+"""
+
+
+def _no_second_set(text: str) -> str:
+    return text.replace(', "Test Set Two"', "")
+
+
+def test_weapons_keep_their_sources_with_freshness_and_rank() -> None:
+    (p,) = load_profiles(GOOD + WEAPON_BLOCK)
+    (w,) = p.recommended_weapons
+    assert (w.name, w.tier) == ("Test Sword", "best")
+    assert [(s.name, s.rank, s.as_of) for s in w.sources] == [
+        ("Test Guide", 1, "v7.2"),
+        ("Old Guide", 3, "v4.6 (stale)"),
+    ]
+    assert w.sources[0].accessed.isoformat() == "2026-11-08"
+
+
+def test_a_known_weapon_validates_and_an_unknown_one_is_reported() -> None:
+    assert validate_profiles(load_profiles(_no_second_set(GOOD + WEAPON_BLOCK)), snapshot()) == []
+    bad = _no_second_set(GOOD + WEAPON_BLOCK).replace(
+        'name = "Test Sword"', 'name = "Imaginary Blade"'
+    )
+    assert any("Imaginary Blade" in p for p in validate_profiles(load_profiles(bad), snapshot()))
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        lambda t: t.replace('tier = "best"', 'tier = "meta"'),
+        lambda t: t.replace("rank = 1", "rank = 0"),
+        lambda t: t.replace("rank = 1", 'rank = "first"'),
+        lambda t: t.replace('as_of = "v7.2"', 'as_of = "  "'),
+        lambda t: t.replace('accessed = "2026-11-08"', 'accessed = "yesterday"', 1),
+        lambda t: t.replace("https://example.com/weapons", "http://example.com/weapons"),
+        lambda t: t.replace("https://example.com/weapons", "https://user:pw@example.com/weapons"),
+        lambda t: t.replace(
+            'name = "Test Guide"\nurl = "https://example.com/weapons"',
+            'name = "x\\u001b[2J"\nurl = "https://example.com/weapons"',
+        ),
+    ],
+)
+def test_malformed_weapon_options_are_rejected(mutation) -> None:  # type: ignore[no-untyped-def]
+    bad = GOOD + mutation(WEAPON_BLOCK)
+    assert bad != GOOD + WEAPON_BLOCK
+    with pytest.raises(ProfileError):
+        load_profiles(bad)
+
+
+def test_a_weapon_needs_at_least_one_source_and_names_must_be_unique() -> None:
+    no_sources = (
+        GOOD
+        + """
+[[profile.recommended_weapons]]
+name = "Test Sword"
+tier = "best"
+"""
+    )
+    with pytest.raises(ProfileError):
+        load_profiles(no_sources)
+    with pytest.raises(ProfileError):
+        load_profiles(GOOD + WEAPON_BLOCK + WEAPON_BLOCK)

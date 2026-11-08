@@ -99,3 +99,10 @@ def test_main_stat_usage_percent_is_rendered() -> None:
     )
     out = _render(text)
     assert "sands: ATK% 82.5%, HP (only at C6) 4.8%" in out
+
+
+def test_weapons_are_rendered_with_their_sources_and_freshness() -> None:
+    from test_builds_profiles import WEAPON_BLOCK
+
+    out = _render(GOOD + WEAPON_BLOCK)
+    assert "weapon: Test Sword (best; Test Guide #1 v7.2, Old Guide #3 v4.6 (stale))" in out

@@ -108,3 +108,46 @@ def test_in_game_main_stat_shares_never_exceed_100_percent() -> None:
     for p in _by_name("in-game").values():
         for slot, choices in p.recommended_main_stats.items():
             assert sum(c.usage_percent or 0.0 for c in choices) <= 100.5, (p.name, slot)
+
+
+KNOWN_WEAPON_HOSTS = {
+    "game8.co", "gamewith.net", "genshin-builds.com", "genshin.gg", "keqingmains.com", "www.pockettactics.com",
+}  # fmt: skip
+
+
+def _is_current(as_of: str) -> bool:
+    return "stale" not in as_of and as_of != "undated"
+
+
+def test_every_in_game_profile_has_cited_weapons() -> None:
+    for p in _by_name("in-game").values():
+        assert 3 <= len(p.recommended_weapons) <= 6, p.name
+        assert len({w.name for w in p.recommended_weapons}) == len(p.recommended_weapons)
+
+
+def test_a_best_weapon_is_backed_by_two_current_pages() -> None:
+    for p in _by_name("in-game").values():
+        best = [w for w in p.recommended_weapons if w.tier == "best"]
+        assert best, f"{p.name} has no best weapon"
+        for w in best:
+            current = [s for s in w.sources if _is_current(s.as_of)]
+            assert len(current) >= 2, (p.name, w.name)
+            assert min(s.rank for s in current) <= 3, (p.name, w.name)
+
+
+def test_weapon_sources_come_from_the_documented_research_hosts() -> None:
+    from urllib.parse import urlsplit
+
+    for p in _by_name("in-game").values():
+        for w in p.recommended_weapons:
+            for s in w.sources:
+                assert urlsplit(s.url).hostname in KNOWN_WEAPON_HOSTS, (p.name, s.url)
+                assert s.accessed.isoformat() == "2026-11-08"
+
+
+def test_weapon_spot_checks_against_the_research() -> None:
+    vesna = _by_name("in-game")["Vesna"]
+    assert vesna.recommended_weapons[0].name == "Beyond the Chrysalis"
+    assert {s.name for s in vesna.recommended_weapons[0].sources} == {"GenshinBuilds", "GameWith"}
+    yun = {w.name for w in _by_name("in-game")["Yun Jin"].recommended_weapons}
+    assert "Prototype Starglitter" in yun

@@ -51,6 +51,33 @@ class RecommendedSet(_Frozen):
     condition: Text | None = None
 
 
+class ArtifactRules(_Frozen):
+    """Game rules the snapshot does not carry. Today: the maximum level of each rarity."""
+
+    max_level: dict[int, int]
+    confidence: Confidence
+    source: Text
+    observed_at: Text
+    notes: tuple[Text, ...] = ()
+
+    @model_validator(mode="after")
+    def _sane_levels(self) -> ArtifactRules:
+        previous = 0
+        for rarity in sorted(self.max_level):
+            level = self.max_level[rarity]
+            if not 1 <= rarity <= 5:
+                msg = f"rarity {rarity} is not 1-5"
+                raise ValueError(msg)
+            if not 4 <= level <= 20 or level % 4:
+                msg = f"max level {level} for rarity {rarity} must be 4-20 and a multiple of 4"
+                raise ValueError(msg)
+            if level < previous:
+                msg = "a higher rarity cannot have a lower max level"
+                raise ValueError(msg)
+            previous = level
+        return self
+
+
 class ScoringProfile(_Frozen):
     """What a character wants, already reduced to numbers by the layer that owns profiles."""
 
@@ -113,6 +140,26 @@ class Provenance(_Frozen):
     weights_note: str | None = None
 
 
+class Potential(_Frozen):
+    """What upgrading can still add (docs/potential-spec.md). Every number is a floor, a best case
+    or a ratio of two theoretical maxima; there is no expected value."""
+
+    status: Literal["modelled", "not_modelled"]
+    reason: str | None = None
+    max_level: int | None = None
+    upgrades_left: int | None = None
+    floor: float | None = None  # the current roll score: upgrades only add rolls
+    ceiling: float | None = None  # best case for the remaining upgrades
+    theoretical_max: float | None = None  # best possible piece, fully upgraded
+    theoretical_max_now: float | None = None  # best possible piece with the same upgrades done
+    pct_of_max_now_level: float | None = None
+    pct_of_max: float | None = None
+    pct_ceiling_of_max: float | None = None
+    rules_confidence: Confidence | None = None
+    assumptions: tuple[str, ...] = ()
+    problems: tuple[str, ...] = ()
+
+
 class ArtifactScore(_Frozen):
     roll_score: float
     total_rolls: int  # valid rolls only; anything rejected is in ``problems``
@@ -125,3 +172,4 @@ class ArtifactScore(_Frozen):
     set_fit: SetFit
     problems: tuple[str, ...]
     provenance: Provenance
+    potential: Potential

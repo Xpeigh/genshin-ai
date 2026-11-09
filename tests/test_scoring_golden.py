@@ -191,3 +191,69 @@ def test_crit_value_of_a_piece_with_both_crit_substats(
     )
     # displayed: CRIT Rate 3.9% and CRIT DMG 7.8% -> 2 x 3.9 + 7.8 = 15.6 (exact tiers differ by < 0.1)
     assert score_artifact(art, sp, snap).crit_value == pytest.approx(15.6, abs=0.1)
+
+
+# --- potential model on the same real pieces ---------------------------------------------------
+
+
+def _potential_of(piece, snap, profiles):  # type: ignore[no-untyped-def]
+    from genshin_companion.builds.rules import load_artifact_rules
+
+    rules = load_artifact_rules(
+        (ROOT / "rules" / "artifact-levels.toml").read_text(encoding="utf-8")
+    )
+    holder = PROFILE_NAME.get(piece["equipped_by"], piece["equipped_by"])
+    sp = to_scoring_profile(select_profile(profiles, _char_ids(snap)[holder]))  # type: ignore[arg-type]
+    ids, _ = _rolls(snap, piece)
+    art = ArtifactInput(
+        slot=piece["slot"],
+        rarity=5,
+        level=piece["level"],
+        set_name=None,
+        main_stat=piece["main_stat"],
+        roll_affix_ids=ids,
+    )
+    return sp, score_artifact(art, sp, snap, rules)
+
+
+PIECES_WITH_HOLDER = [p for p in PIECES if p["equipped_by"] != "No one"]
+
+
+@pytest.mark.parametrize(
+    "piece", PIECES_WITH_HOLDER, ids=lambda p: f"{p['equipped_by']}-{p['slot']}-{p['level']}"
+)
+def test_potential_obeys_its_invariants_on_real_pieces(
+    piece: dict, snap: Snapshot, profiles: list[CharacterProfile]
+) -> None:  # type: ignore[type-arg]
+    _sp, scored = _potential_of(piece, snap, profiles)
+    pot = scored.potential
+    assert pot.status == "modelled" and pot.max_level == 20
+    assert pot.upgrades_left == 5 - piece["level"] // 4
+    assert pot.floor == pytest.approx(scored.roll_score)
+    assert pot.ceiling is not None and pot.ceiling >= pot.floor - 1e-9
+    if pot.upgrades_left == 0:
+        assert pot.ceiling == pytest.approx(pot.floor)  # the +20 piece has nothing left
+    assert pot.problems == ()
+
+
+@pytest.mark.parametrize(
+    "piece", PIECES_WITH_HOLDER, ids=lambda p: f"{p['equipped_by']}-{p['slot']}-{p['level']}"
+)
+def test_the_theoretical_maximum_equals_the_hand_count_of_favoured_stats(
+    piece: dict,
+    snap: Snapshot,
+    profiles: list[CharacterProfile],  # type: ignore[type-arg]
+) -> None:
+    # In-game profiles weigh every favoured stat 1.0 and a top 5-star roll is worth exactly 1.0, so the
+    # best piece is: min(f, 4) initial favoured rolls + all 5 upgrades on one favoured stat, where f is the
+    # number of favoured stats the piece can still carry (its own main stat cannot be a substat).
+    sp, scored = _potential_of(piece, snap, profiles)
+    assert set(sp.weights.values()) == {1.0}  # the hand count below only holds for 0/1 weights
+    f = len([s for s in sp.weights if s != piece["main_stat"]])
+    done = piece["level"] // 4
+    best = 1 if f else 0
+    pot = scored.potential
+    assert pot.theoretical_max == pytest.approx(min(f, 4) + 5 * best)
+    assert pot.theoretical_max_now == pytest.approx(min(f, 4) + done * best)
+    if pot.theoretical_max:
+        assert pot.pct_of_max == pytest.approx(scored.roll_score / pot.theoretical_max)

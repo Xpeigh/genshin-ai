@@ -1,0 +1,28 @@
+# Maximum level of an artifact by rarity.
+#
+# The data snapshot cannot supply this: its main-stat table lists levels 0-20 for every rarity. These
+# numbers come from Genshin Optimizer's `artMaxLevel` constant (MIT-licensed code), read directly from
+# raw.githubusercontent.com on 2026-11-09 (repository frzyc/genshin-optimizer, branch master, HEAD at
+# the time 283952a096249677a0b7dfedf927cc30fbcd5ca6, file libs/gi/consts/src/artifact.ts).
+#
+# Cross-check: a Game Rant artifact guide from November 2024 gives the same numbers for 1, 3, 4 and 5
+# stars (4, 12, 16, 20). It gives 8 for 2 stars where Genshin Optimizer gives 4. The two official-wiki
+# pages could not be read (HTTP 402, and a page with no content). Ben already knew that 5-star pieces
+# go to +20. The 2-star value is the one still open: Ben can confirm it on his 2-star Lucky Dog goblet.
+#
+# Provisional until the 2-star value is confirmed in the game.
+
+confidence = "provisional"
+observed_at = "2026-11-09"
+source = "Genshin Optimizer artMaxLevel (frzyc/genshin-optimizer, libs/gi/consts/src/artifact.ts at commit 283952a0, read 2026-11-09); agrees with a 2024 Game Rant guide except for 2 stars"
+notes = [
+    "2-star maximum is disputed between sources (4 in Genshin Optimizer's code, 8 in a 2024 guide): confirm in the game on a 2-star piece.",
+    "Max levels of the other rarities agree between the two sources; 5-star +20 was already known to Ben.",
+]
+
+[max_level]
+1 = 4
+2 = 4
+3 = 12
+4 = 16
+5 = 20

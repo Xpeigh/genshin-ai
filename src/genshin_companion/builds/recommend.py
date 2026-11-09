@@ -17,9 +17,17 @@ from genshin_companion.scoring import ArtifactScore
 from genshin_companion.scoring.character import SLOT_ORDER
 from genshin_companion.scoring.models import Slot
 
-Kind = Literal["missing", "main_stat", "set", "rolls", "weapon"]
+Kind = Literal["missing", "main_stat", "set", "rolls", "level_up", "weapon"]
 
-PRIORITY: Final[dict[Kind, int]] = {"missing": 1, "main_stat": 2, "set": 3, "rolls": 4, "weapon": 6}
+PRIORITY: Final[dict[Kind, int]] = {
+    "missing": 1,
+    "main_stat": 2,
+    "set": 3,
+    "rolls": 4,
+    "level_up": 5,
+    "weapon": 6,
+}
+MAX_LEVEL_UP: Final = 2  # pieces named as worth upgrading
 MAX_LISTED: Final = 3  # recommended sets or weapons named in one piece of advice
 
 
@@ -42,7 +50,9 @@ class Advice:
     set_name: str | None = None
     recommended: tuple[str, ...] = ()  # stat ids, set names or weapon names, best first
     level: int | None = None
-    value: float | None = None  # average roll value, for "rolls"
+    value: float | None = None  # average roll value, for "rolls" and "level_up"
+    ceiling: float | None = None  # best-case roll score after upgrading, for "level_up"
+    pct_ceiling: float | None = None  # that ceiling as a share of the theoretical maximum
 
 
 def _recommended_sets(profile: CharacterProfile) -> tuple[str, ...]:
@@ -109,6 +119,31 @@ def advise(
                 slot=weakest.slot,
                 level=weakest.level,
                 value=weakest.score.average_per_roll,
+            )
+        )
+
+    # Spend upgrade resources where the rolls are already good: pieces whose main stat and set are
+    # fine, that can still be upgraded and already have at least one useful roll.
+    levelable = [
+        p
+        for p in pieces
+        if p.slot not in flagged
+        and p.score.potential.status == "modelled"
+        and (p.score.potential.upgrades_left or 0) > 0
+        and p.score.total_rolls > 0
+        and p.score.average_per_roll > 0
+    ]
+    levelable.sort(key=lambda p: (-p.score.average_per_roll, SLOT_ORDER.index(p.slot)))
+    for p in levelable[:MAX_LEVEL_UP]:
+        advice.append(
+            Advice(
+                PRIORITY["level_up"],
+                "level_up",
+                slot=p.slot,
+                level=p.level,
+                value=p.score.average_per_roll,
+                ceiling=p.score.potential.ceiling,
+                pct_ceiling=p.score.potential.pct_ceiling_of_max,
             )
         )
 

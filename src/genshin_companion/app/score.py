@@ -18,6 +18,7 @@ from genshin_companion.data.models import Snapshot
 from genshin_companion.enka.models import ImportedArtifact, Roster
 from genshin_companion.scoring import (
     ArtifactInput,
+    ArtifactRules,
     ArtifactScore,
     ScoringProfile,
     score_artifact,
@@ -80,7 +81,10 @@ def _set_name(set_names: dict[str, str | None], art: ImportedArtifact) -> str | 
 
 
 def score_roster(
-    roster: Roster, snapshot: Snapshot, profiles: list[CharacterProfile]
+    roster: Roster,
+    snapshot: Snapshot,
+    profiles: list[CharacterProfile],
+    rules: ArtifactRules | None = None,
 ) -> list[CharacterResult]:
     names = {c.id: c.name for c in snapshot.characters}
     set_names: dict[str, str | None] = {s.id: s.name for s in snapshot.artifact_sets}
@@ -111,7 +115,7 @@ def score_roster(
                 except ValidationError:
                     notes.append(f"the {slot} piece has out-of-range data: not scored")
                     continue
-                score = score_artifact(piece_input, profile, snapshot)
+                score = score_artifact(piece_input, profile, snapshot, rules)
                 pieces[slot] = PieceResult(
                     slot, art.level, art.rarity, art.main_stat, piece_input.set_name, score
                 )
@@ -153,6 +157,26 @@ def _fit_text(score: ArtifactScore) -> tuple[str, str]:
     return main, set_text
 
 
+def _pct(x: float | None) -> str:
+    return f"{x:.0%}" if x is not None else "n/a"
+
+
+def _potential_line(level: int, score: ArtifactScore) -> str | None:
+    p = score.potential
+    if p.status != "modelled":
+        return None
+    prefix = "           potential: "
+    if (p.upgrades_left or 0) == 0:
+        return f"{prefix}fully upgraded: {_pct(p.pct_of_max)} of the +{p.max_level} maximum"
+    left = p.upgrades_left
+    return (
+        f"{prefix}{left} upgrade{'s' if left != 1 else ''} left: {score.roll_score:.2f} now, "
+        f"up to {p.ceiling or 0.0:.2f} at best; "
+        f"{_pct(p.pct_of_max_now_level)} of a +{level} maximum, "
+        f"{_pct(p.pct_of_max)} of the +{p.max_level} maximum (at best {_pct(p.pct_ceiling_of_max)})"
+    )
+
+
 def render_scores(results: list[CharacterResult]) -> str:
     out: list[str] = []
     for r in results:
@@ -187,6 +211,12 @@ def render_scores(results: list[CharacterResult]) -> str:
                 for n in sc.not_scored
             )
             out.extend(f"           ! {_safe(p)}" for p in sc.problems)
+            potential = _potential_line(piece.level, sc)
+            if potential:
+                out.append(potential)
+        reasons = sorted({p.score.potential.reason for p in r.pieces if p.score.potential.reason})
+        if reasons:
+            out.append("  potential not shown: " + "; ".join(_safe(x, 200) for x in reasons))
         if r.summary is not None:
             s = r.summary
             parts = [f"total roll score {s.total_roll_score:.2f} over {s.pieces_scored} piece(s)"]

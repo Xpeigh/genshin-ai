@@ -126,3 +126,10 @@ the gap-fill round; their terms have not been read, so treat their five citation
 Facts only (names, ranks, URLs, stated freshness) are stored; condition and note wording in the
 profiles is a short paraphrase, never a quotation.
 
+### Genshin Optimizer, read for artifact max levels (2026-11-09)
+`libs/gi/consts/src/artifact.ts` (frzyc/genshin-optimizer, MIT) was read directly with the project's own client from
+raw.githubusercontent.com (already allowlisted), HEAD `283952a096249677a0b7dfedf927cc30fbcd5ca6`. Its `artMaxLevel`
+gives 1 star 4, 2 stars 4, 3 stars 12, 4 stars 16, 5 stars 20; a 2024 Game Rant guide agrees except for 2 stars (8).
+Stored in `rules/artifact-levels.toml` as provisional until the 2-star value is confirmed in the game. The fandom wiki
+(HTTP 402) and HoYoLAB wiki (no content) could not be read.
+

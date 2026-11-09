@@ -11,6 +11,7 @@ from genshin_companion.builds.scoring_profile import to_scoring_profile
 from genshin_companion.scoring import ArtifactInput, score_artifact
 from helpers import scoring_snapshot
 from test_builds_profiles import GOOD, WEAPON_BLOCK
+from test_scoring_potential import RULES
 
 P = "FIGHT_PROP_"
 ATKP, HPP, HP, DEFP = P + "ATTACK_PERCENT", P + "HP_PERCENT", P + "HP", P + "DEFENSE_PERCENT"
@@ -30,6 +31,7 @@ def _view(
     set_name: str | None = "Test Set",
     rolls: list[str] | None = None,
     level: int = 20,
+    rules: object = None,
 ) -> PieceView:
     # the profile's sands list is ATK%, goblet HP, circlet ATK% (+ HP at C6)
     art = ArtifactInput(
@@ -40,7 +42,7 @@ def _view(
         main_stat=main,
         roll_affix_ids=[ATK_HIGH] if rolls is None else rolls,
     )  # type: ignore[arg-type]
-    score = score_artifact(art, to_scoring_profile(_profile()), scoring_snapshot())
+    score = score_artifact(art, to_scoring_profile(_profile()), scoring_snapshot(), rules)  # type: ignore[arg-type]
     return PieceView(
         slot=slot, level=level, rarity=5, main_stat=main, set_name=set_name, score=score
     )  # type: ignore[arg-type]
@@ -188,3 +190,51 @@ def test_advice_is_sorted_by_priority_then_slot_order_and_is_deterministic() -> 
     assert [a.priority for a in advice] == sorted(a.priority for a in advice)
     assert _kinds(advice)[:3] == [("missing", "flower"), ("main_stat", "goblet"), ("set", "sands")]
     assert advice == advise(_profile(GOOD + WEAPON_BLOCK), pieces, weapon_name="Rusty Blade")
+
+
+# --- level-up advice (potential model) --------------------------------------------------------
+
+
+def test_level_up_names_the_two_best_rolled_pieces_that_can_still_be_upgraded() -> None:
+    cr, em, cd_low = "500103", "500502", "500201"  # three substats the profile does not weigh
+    four = [cr, em, cd_low]
+    pieces = _full(
+        flower=_view("flower", main=HP, rolls=[ATK_HIGH, *four], level=8, rules=RULES),  # avg 0.25
+        plume=_view(
+            "plume", main=P + "ATTACK", rolls=[ATK_LOW, *four], level=8, rules=RULES
+        ),  # 0.17
+        circlet=_view(
+            "circlet", main=HP, rolls=[ATK_HIGH, *four], level=4, rules=RULES
+        ),  # avg 0.25
+    )
+    advice = advise(_profile(), pieces, weapon_name=None)
+    ups = [a for a in advice if a.kind == "level_up"]
+    assert [a.slot for a in ups] == ["flower", "circlet"]  # best average first, ties by slot order
+    assert ups[0].priority == 5 and ups[0].level == 8
+    assert ups[0].value == pytest.approx(0.25)
+    assert ups[0].ceiling == pytest.approx(
+        1.0 + 3 * 1.0
+    )  # 3 upgrades left, all on ATK% (weight 1.0)
+    assert ups[0].pct_ceiling is not None
+
+
+def test_nothing_is_levelled_up_without_rules_or_for_maxed_or_flagged_pieces() -> None:
+    assert all(
+        a.kind != "level_up" for a in advise(_profile(), _full(), weapon_name=None)
+    )  # no rules
+    maxed = _full(flower=_view("flower", main=HP, level=20, rules=RULES))
+    assert all(a.slot != "flower" for a in advise(_profile(), maxed, None) if a.kind == "level_up")
+    flagged = _full(
+        goblet=_view("goblet", main=DEFP, level=4, rules=RULES)
+    )  # main stat off the list
+    assert all(
+        a.slot != "goblet" for a in advise(_profile(), flagged, None) if a.kind == "level_up"
+    )
+
+
+def test_a_piece_without_a_useful_roll_is_not_worth_levelling() -> None:
+    dud = _view(
+        "plume", main=P + "ATTACK", rolls=[HP_ROLL], level=4, rules=RULES
+    )  # only an unweighted roll
+    advice = advise(_profile(), _full(plume=dud), weapon_name=None)
+    assert all(a.slot != "plume" for a in advice if a.kind == "level_up")

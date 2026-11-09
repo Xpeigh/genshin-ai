@@ -14,6 +14,7 @@ from genshin_companion.builds.profiles import CharacterProfile
 from genshin_companion.builds.recommend import Advice, PieceView, advise
 from genshin_companion.data.models import Snapshot
 from genshin_companion.enka.models import Roster
+from genshin_companion.scoring import ArtifactRules
 
 WeaponStatus = Literal["best", "alternative", "not_listed", "no_list", "unknown"]
 
@@ -46,10 +47,13 @@ def _weapon(chosen: CharacterProfile, weapon_name: str | None) -> WeaponStatus:
 
 
 def recommend_roster(
-    roster: Roster, snapshot: Snapshot, profiles: list[CharacterProfile]
+    roster: Roster,
+    snapshot: Snapshot,
+    profiles: list[CharacterProfile],
+    rules: ArtifactRules | None = None,
 ) -> list[CharacterRecommendation]:
     weapons = {w.id: w.name for w in snapshot.weapons}
-    results = score_roster(roster, snapshot, profiles)
+    results = score_roster(roster, snapshot, profiles, rules)
     out: list[CharacterRecommendation] = []
     for ch, res in zip(roster.characters, results, strict=True):
         assert res.avatar_id == ch.avatar_id
@@ -107,6 +111,13 @@ def _advice_text(a: Advice) -> str:
         return (
             f"weakest substat rolls: {slot}{upgrading}, "
             f"{(a.value or 0.0):.2f} of a perfect roll per roll on average"
+        )
+    if a.kind == "level_up":
+        ceiling = f"up to {a.ceiling:.2f} at best" if a.ceiling is not None else "upgrade"
+        share = f" ({a.pct_ceiling:.0%} of the maximum)" if a.pct_ceiling is not None else ""
+        return (
+            f"level up: {slot} (+{a.level}): {(a.value or 0.0):.2f} per roll so far, "
+            f"{ceiling}{share}"
         )
     return "weapon: not on the researched list; recommended: " + ", ".join(
         _safe(r) for r in a.recommended

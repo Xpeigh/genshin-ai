@@ -160,3 +160,112 @@ def test_clear_data_removes_imported_rosters_and_the_enka_cache(home: Path, tmp_
     assert (home / "user" / "rosters" / "800123456.json").exists()
     assert main(["clear-data", "--yes"]) == 0
     assert not any((home / "user").iterdir())
+
+
+# --- refresh, lookup and the no-login disclaimer ----------------------------------------------
+
+
+def _fake_enka(monkeypatch: pytest.MonkeyPatch, **kwargs):  # type: ignore[no-untyped-def]
+    from genshin_companion.app import cli
+    from genshin_companion.config import default_network_policy
+    from genshin_companion.net import SafeHttpClient
+    from helpers import StreamingTransport
+    from test_enka_client import Enka
+
+    server = Enka(**kwargs)
+    client = SafeHttpClient(default_network_policy(), transport=StreamingTransport(server.handler))
+    monkeypatch.setattr(cli, "_client_override", client)
+    return server
+
+
+def test_import_states_that_no_hoyoverse_login_is_ever_used(
+    home: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    _fake_enka(monkeypatch)
+    assert main(["import", "800123456"]) == 0
+    err = capsys.readouterr().err
+    assert "never asks for your HoYoverse" in err and "Character Showcase" in err
+
+
+def test_refresh_needs_a_saved_roster(home: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["import", "--refresh"]) == 1
+    assert "import <uid>" in capsys.readouterr().err
+
+
+def test_refresh_reuses_the_cache_until_enkas_window_has_passed(
+    home: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    server = _fake_enka(monkeypatch)
+    assert main(["import", "800123456"]) == 0
+    capsys.readouterr()
+    assert main(["import", "--refresh"]) == 0
+    out = capsys.readouterr().out
+    assert "800123456" in out and "cache" in out
+    assert len(server.requests) == 1  # nothing new was requested inside the ttl
+
+
+def test_refresh_fetches_again_when_the_window_is_over(
+    home: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    from test_enka_mapping import showcase
+
+    server = _fake_enka(monkeypatch, body=showcase(ttl=0))  # a response that is stale at once
+    assert main(["import", "800123456"]) == 0
+    assert main(["import", "--refresh"]) == 0
+    assert len(server.requests) == 2
+    assert "refreshed" in capsys.readouterr().out
+
+
+def test_refresh_stops_politely_when_rate_limited(
+    home: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    from test_enka_mapping import showcase
+
+    _fake_enka(monkeypatch, body=showcase(ttl=0))
+    assert main(["import", "800123456"]) == 0
+    server = _fake_enka(monkeypatch, status=429, headers={"Retry-After": "30"})
+    capsys.readouterr()
+    assert main(["import", "--refresh"]) == 1
+    assert "Rate limited" in capsys.readouterr().err and len(server.requests) == 1
+
+
+def test_refresh_cannot_be_combined_with_a_uid_or_a_file(
+    home: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    assert main(["import", "--refresh", "800123456"]) == 2
+    assert main(["import", "--refresh", "--file", "x.json"]) == 2
+    assert "either" in capsys.readouterr().err
+
+
+def test_lookup_previews_a_player_without_saving_anything(
+    home: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    server = _fake_enka(monkeypatch)
+    assert main(["lookup", "800123456"]) == 0
+    captured = capsys.readouterr()
+    assert "Tester" in captured.out and "57" in captured.out  # nickname and level
+    assert "2 character(s)" in captured.out  # the showcase lists two, whatever is detailed
+    assert "never asks for your HoYoverse" in captured.err and "sends this UID" in captured.err
+    assert not (home / "user" / "rosters").exists() or not list(
+        (home / "user" / "rosters").glob("*.json")
+    )
+    assert main(["import", "800123456"]) == 0  # the lookup's response is reused: still one request
+    assert len(server.requests) == 1
+
+
+def test_lookup_reports_a_closed_showcase_and_a_bad_uid(
+    home: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    import json
+
+    from test_enka_mapping import showcase
+
+    closed = json.loads(showcase())
+    closed.pop("avatarInfoList")
+    closed["playerInfo"].pop("showAvatarInfoList")
+    server = _fake_enka(monkeypatch, body=json.dumps(closed).encode())
+    assert main(["lookup", "800123456"]) == 0
+    out = capsys.readouterr().out.lower()
+    assert "closed" in out and "no characters" in out
+    assert main(["lookup", "123"]) == 1  # a malformed UID never reaches the network
+    assert len(server.requests) == 1

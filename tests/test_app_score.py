@@ -16,6 +16,7 @@ from genshin_companion.enka.models import (
 )
 from helpers import snapshot
 from test_builds_profiles import GOOD
+from test_scoring_potential import RULES
 
 P = "FIGHT_PROP_"
 NOW = datetime(2026, 11, 8, 12, 0, tzinfo=UTC)
@@ -285,3 +286,72 @@ def test_a_corrupt_saved_roster_is_a_clean_error(
         assert cli.main([command]) == 1
         err = capsys.readouterr().err
         assert "Traceback" not in err and "import" in err
+
+
+# --- potential in the report ------------------------------------------------------------------
+
+
+def test_the_report_shows_the_potential_when_rules_are_given() -> None:
+    roster = _roster(_hero(_sands(["501062"])))
+    text = render_scores(score_roster(roster, snapshot(), PROFILES, RULES))
+    assert "upgrades left" in text and "at best" in text
+    assert "% of the +20 maximum" in text and "% of a +4 maximum" in text
+    assert "ceiling is a best case" not in text  # the long assumption text stays out of the report
+
+
+def test_without_rules_the_report_says_once_that_the_potential_is_not_shown() -> None:
+    roster = _roster(_hero(_sands(["501062"])))
+    text = render_scores(score_roster(roster, snapshot(), PROFILES))
+    assert "upgrades left" not in text
+    assert text.count("potential not shown") == 1 and "rules" in text
+
+
+def test_a_maxed_piece_says_it_is_fully_upgraded() -> None:
+    roster = _roster(_hero(_sands(["501062"], level=20)))
+    text = render_scores(score_roster(roster, snapshot(), PROFILES, RULES))
+    assert "fully upgraded" in text
+
+
+def test_score_uses_the_shipped_rules_by_default_and_survives_a_missing_file(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.setenv("GENSHIN_COMPANION_HOME", str(tmp_path / "home"))
+    folder = tmp_path / "home" / "user" / "rosters"
+    folder.mkdir(parents=True)
+    (folder / "123456789.json").write_text(
+        _roster(_hero(_sands(["501062"]))).model_dump_json(), encoding="utf-8"
+    )
+    profiles = tmp_path / "p.toml"
+    profiles.write_text(TEXT, encoding="utf-8")
+    monkeypatch.setattr(cli, "_current_snapshot", lambda _layout: snapshot())
+    assert (
+        cli.main(["score", "--profiles", str(profiles)]) == 0
+    )  # rules/artifact-levels.toml from the repo root
+    assert "upgrades left" in capsys.readouterr().out
+    assert (
+        cli.main(["score", "--profiles", str(profiles), "--rules", str(tmp_path / "nope.toml")])
+        == 0
+    )
+    captured = capsys.readouterr()
+    assert "upgrades left" not in captured.out and "potential not shown" in captured.out
+    assert "rules" in captured.err
+
+
+def test_invalid_rules_stop_the_command_with_a_clear_error(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.setenv("GENSHIN_COMPANION_HOME", str(tmp_path / "home"))
+    folder = tmp_path / "home" / "user" / "rosters"
+    folder.mkdir(parents=True)
+    (folder / "123456789.json").write_text(
+        _roster(_hero(_sands(["501062"]))).model_dump_json(), encoding="utf-8"
+    )
+    profiles = tmp_path / "p.toml"
+    profiles.write_text(TEXT, encoding="utf-8")
+    bad = tmp_path / "bad.toml"
+    bad.write_text("not toml [[[", encoding="utf-8")
+    monkeypatch.setattr(cli, "_current_snapshot", lambda _layout: snapshot())
+    for command in ("score", "recommend"):
+        assert cli.main([command, "--profiles", str(profiles), "--rules", str(bad)]) == 1
+        captured = capsys.readouterr()
+        assert captured.out == "" and "invalid" in captured.err

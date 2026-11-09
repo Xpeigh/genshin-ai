@@ -4,9 +4,11 @@ from genshin_companion.scoring.artifact import score_artifact
 from genshin_companion.scoring.character import CharacterSummary, summarize_character
 from genshin_companion.scoring.models import (
     ArtifactInput,
+    ArtifactRules,
     ArtifactScore,
     MainStatFit,
     NotScored,
+    Potential,
     Provenance,
     RecommendedMainStat,
     RecommendedSet,
@@ -17,10 +19,12 @@ from genshin_companion.scoring.models import (
 
 __all__ = [
     "ArtifactInput",
+    "ArtifactRules",
     "ArtifactScore",
     "CharacterSummary",
     "MainStatFit",
     "NotScored",
+    "Potential",
     "Provenance",
     "RecommendedMainStat",
     "RecommendedSet",

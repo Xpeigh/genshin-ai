@@ -26,7 +26,8 @@ Status legend: [ ] todo, [x] done. Update as you go and add newly discovered tas
 - [x] Pure, deterministic library: no network, no LLM, no file I/O inside scoring functions (enforced by `tests/test_architecture.py`, now including transitive file I/O)
 - [x] Weights rule approved by Ben 2026-11-08 (favoured = 1.0, roll value = tier value / best 5-star tier, guide tiers 1.0/0.75/0.5/0.25, conditional stats weight 0 and flagged). Spec: `docs/scoring-spec.md` (awaiting Ben's review before code)
 - [x] Artifact scoring v1 built per `docs/scoring-spec.md` (piece roll score, useful rolls, crit value, main stat and set fit, per-character summary, `genshin-companion score`), independently reviewed (28 findings, confirmed ones fixed with tests). Golden tests run on Ben's 11 hand-copied 5-star pieces (two sheet label typos confirmed by Ben)
-- [ ] Scoring next steps: '% of theoretical maximum' and potential range for unleveled pieces (documented upgrade model), weapon scoring, whether to score conditional stats
+- [x] Potential model built (spec `docs/potential-spec.md`, approved by Ben 2026-11-09: no expected value, both percentages): floor, best-case ceiling, % of the maximum at +max and at the current level; `rules/artifact-levels.toml` (provisional: max levels from Genshin Optimizer's code, 2-star disputed) ; `score` and `recommend` show it, `recommend` gives level-up advice. Golden tests on Ben's 11 pieces. OPEN: Ben to confirm the 2-star max level in the game (his Lucky Dog goblet is 2-star)
+- [ ] Next in Phase 2: weapon scoring, whether to score conditional stats
 - [ ] Traveler element: the import now records Enka's documented `skillDepotId`, but the docs and our downloaded store do not say how it relates to the per-element ids (`10000007-705`), so matching is NOT changed yet. Re-import Ben's roster once, check that his Cryo Traveler reports 705, then match exactly (a real showcase is the evidence)
 - [x] Snapshot validation rejects unusable names (blank, control characters, over 120 characters) in characters, weapons and artifact sets; the score and recommend commands still sanitise at their boundary
 - [ ] Weapon scoring and ranking per character (stat-based first, curated passive tags second)
@@ -131,3 +132,8 @@ Scope principle: never brute-force every variable (character x level x C0-C6 x t
 ## Open questions for Ben
 - Desktop shell choice after the spike (Tauri + Python sidecar vs. alternatives)
 - Whether the app should ever be distributed publicly (affects asset and licensing choices)
+
+## Done on 2026-11-09 (UID convenience, asked by Ben)
+- [x] `genshin-companion lookup <uid>`: preview a player's public showcase without saving; `import --refresh`: re-import every saved roster, contacting Enka only after its reuse window; a no-login disclaimer in the README and printed by `import`/`lookup`/`--refresh` (the app never asks for a HoYoverse login; only showcased characters can be imported). "Remember my UID" is the saved rosters themselves, so no second list of UIDs is kept
+- [ ] UI later: a UID box, a Refresh button, automatic refresh on start only after the reuse window
+

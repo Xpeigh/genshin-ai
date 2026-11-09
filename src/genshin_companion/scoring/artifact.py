@@ -15,6 +15,7 @@ from typing import Final
 from genshin_companion.data.models import Confidence, Snapshot
 from genshin_companion.scoring.models import (
     ArtifactInput,
+    ArtifactRules,
     ArtifactScore,
     MainStatFit,
     NotScored,
@@ -23,6 +24,7 @@ from genshin_companion.scoring.models import (
     SetFit,
     StatBreakdown,
 )
+from genshin_companion.scoring.potential import compute_potential
 
 CRIT_RATE: Final = "FIGHT_PROP_CRITICAL"
 CRIT_DMG: Final = "FIGHT_PROP_CRITICAL_HURT"
@@ -70,7 +72,10 @@ def _set_fit(art: ArtifactInput, profile: ScoringProfile) -> SetFit:
 
 
 def score_artifact(
-    art: ArtifactInput, profile: ScoringProfile, snapshot: Snapshot
+    art: ArtifactInput,
+    profile: ScoringProfile,
+    snapshot: Snapshot,
+    rules: ArtifactRules | None = None,
 ) -> ArtifactScore:
     tiers = {t.affix_id: t for t in snapshot.substat_tiers}
     best_five: dict[str, float] = {}
@@ -122,10 +127,21 @@ def score_artifact(
         values.get(CRIT_DMG, [])
     )
 
+    potential = compute_potential(
+        art,
+        profile.weights,
+        snapshot.substat_tiers,
+        best_five,
+        set(values),
+        roll_score,
+        rules,
+    )
     data_confidence = snapshot.confidence.get("substat_tiers", "provisional")
     if art.set_name is not None:  # the set name came from the set data
         sets_confidence = snapshot.confidence.get("artifact_sets", "provisional")
         data_confidence = _weakest(data_confidence, sets_confidence)
+    if potential.rules_confidence is not None:  # the level rules were used
+        data_confidence = _weakest(data_confidence, potential.rules_confidence)
     return ArtifactScore(
         roll_score=roll_score,
         total_rolls=total_rolls,
@@ -145,4 +161,5 @@ def score_artifact(
             confidence=_weakest(profile.confidence, data_confidence),
             weights_note=profile.weights_note,
         ),
+        potential=potential,
     )

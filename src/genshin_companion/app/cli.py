@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from collections.abc import Sequence
 from datetime import UTC, datetime
@@ -20,13 +21,14 @@ from genshin_companion.builds.profiles import (
     load_profiles,
     validate_profiles,
 )
+from genshin_companion.builds.rules import RulesError, load_artifact_rules
 from genshin_companion.config import default_network_policy
 from genshin_companion.data import sources
 from genshin_companion.data.changelog import diff, render
 from genshin_companion.data.models import Snapshot
 from genshin_companion.data.store import SnapshotStore, StoreError
 from genshin_companion.data.sync import run_sync
-from genshin_companion.enka.client import EnkaError, EnkaRateLimitedError, fetch_roster
+from genshin_companion.enka.client import EnkaError, EnkaRateLimitedError, FetchResult, fetch_roster
 from genshin_companion.enka.mapping import EnkaFormatError, parse_showcase
 from genshin_companion.enka.models import Roster
 from genshin_companion.net import NetworkError, SafeHttpClient
@@ -37,6 +39,7 @@ from genshin_companion.paths import (
     ensure_layout,
     resolve_home,
 )
+from genshin_companion.scoring import ArtifactRules
 
 # Tests inject a client built on a mock transport; production code leaves this as None.
 _client_override: SafeHttpClient | None = None
@@ -135,9 +138,119 @@ def _current_snapshot(layout: DataLayout) -> Snapshot | None:
         return None
 
 
+UID_NOTE = (
+    "Note: importing from Enka sends this UID to enka.network in the request URL. "
+    "Use --file to import a saved response instead."
+)
+NO_LOGIN_NOTE = (
+    "This tool never asks for your HoYoverse/miHoYo login, password or cookies: it only reads "
+    "the public Character Showcase of the UID you give it, so only characters placed there can "
+    "be imported."
+)
+_UID_STEM = re.compile(r"^[1-9][0-9]{8,9}$")
+
+
+def _fetch_uid(uid: str, layout: DataLayout, now: datetime) -> FetchResult:
+    client = _client_override or SafeHttpClient(default_network_policy())
+    try:
+        return fetch_roster(uid, client, layout.cache, now)
+    finally:
+        if _client_override is None:
+            client.close()
+
+
+def _saved_uids(layout: DataLayout) -> list[str]:
+    folder = layout.user / "rosters"
+    if not folder.exists():
+        return []
+    return sorted(f.stem for f in folder.glob("*.json") if _UID_STEM.match(f.stem))
+
+
+def _cmd_refresh(layout: DataLayout, now: datetime) -> int:
+    uids = _saved_uids(layout)
+    if not uids:
+        print("No saved rosters. Import one first: genshin-companion import <uid>", file=sys.stderr)
+        return 1
+    print(UID_NOTE, file=sys.stderr)
+    print(NO_LOGIN_NOTE, file=sys.stderr)
+    failed = False
+    for uid in uids:
+        try:
+            result = _fetch_uid(uid, layout, now)
+        except EnkaRateLimitedError as exc:
+            wait = f" Retry after {exc.retry_after}s." if exc.retry_after else ""
+            print(f"Rate limited.{wait} Stopping so Enka is not hit again.", file=sys.stderr)
+            return 1
+        except (EnkaError, EnkaFormatError, NetworkError, OSError) as exc:
+            print(f"UID {uid}: failed: {exc}", file=sys.stderr)
+            failed = True
+            continue
+        _save_roster(layout, result.roster)
+        how = (
+            "served from the local cache "
+            f"(next request possible in {result.seconds_until_refresh}s)"
+            if result.from_cache
+            else "refreshed from Enka"
+        )
+        print(f"UID {uid}: {len(result.roster.characters)} character(s), {how}.")
+    return 1 if failed else 0
+
+
+def _cmd_lookup(args: argparse.Namespace) -> int:
+    layout = ensure_layout(resolve_home())
+    now = datetime.now(UTC).replace(microsecond=0)
+    print(UID_NOTE, file=sys.stderr)
+    print(NO_LOGIN_NOTE, file=sys.stderr)
+    try:
+        result = _fetch_uid(args.uid, layout, now)
+    except EnkaRateLimitedError as exc:
+        wait = f" Retry after {exc.retry_after}s." if exc.retry_after else ""
+        print(f"Rate limited.{wait}", file=sys.stderr)
+        return 1
+    except (EnkaError, EnkaFormatError, NetworkError, OSError) as exc:
+        print(f"Lookup failed: {exc}", file=sys.stderr)
+        return 1
+    r = result.roster
+    snapshot = _current_snapshot(layout)
+    names = {c.id: c.name for c in snapshot.characters} if snapshot else {}
+    who = r.nickname or "(no nickname)"
+    level = f"level {r.player_level}" if r.player_level is not None else "level unknown"
+    region = f", region {r.region}" if r.region else ""
+    print(f"Player: {who} ({level}{region})")
+    if not r.showcase_open:
+        print(
+            "Showcase: closed or empty, so no characters can be imported. The player has to add "
+            "characters to the in-game Character Showcase (and make it public)."
+        )
+    else:
+        print(
+            f"Showcase: {r.showcase_size} character(s) listed, "
+            f"{len(r.characters)} with equipment details."
+        )
+        for ch in r.characters:
+            label = names.get(str(ch.avatar_id)) or f"avatar {ch.avatar_id}"
+            print(f"  - {label} Lv{ch.level}, {len(ch.artifacts)} artifact(s)")
+    state = (
+        f"served from the local cache; next request possible in {result.seconds_until_refresh}s"
+        if result.from_cache
+        else "fetched from Enka; reused for its ttl, so importing next costs no new request"
+    )
+    print(f"({state}. Nothing was saved: run `genshin-companion import {args.uid}` to keep it.)")
+    return 0
+
+
 def _cmd_import(args: argparse.Namespace) -> int:
     layout = ensure_layout(resolve_home())
     now = datetime.now(UTC).replace(microsecond=0)
+    if args.refresh:
+        if args.uid or args.file:
+            print(
+                "Use --refresh on its own: either refresh the saved rosters or "
+                "import one UID/--file.",
+                file=sys.stderr,
+            )
+            return 2
+        return _cmd_refresh(layout, now)
     try:
         if args.file:
             body = Path(args.file).read_bytes()
@@ -147,17 +260,9 @@ def _cmd_import(args: argparse.Namespace) -> int:
             roster = parse_showcase(body, fetched_at=now, source="file")
             how = "imported from a local file; nothing was sent over the network"
         elif args.uid:
-            print(
-                "Note: importing from Enka sends this UID to enka.network in the request URL. "
-                "Use --file to import a saved response instead.",
-                file=sys.stderr,
-            )
-            client = _client_override or SafeHttpClient(default_network_policy())
-            try:
-                result = fetch_roster(args.uid, client, layout.cache, now)
-            finally:
-                if _client_override is None:
-                    client.close()
+            print(UID_NOTE, file=sys.stderr)
+            print(NO_LOGIN_NOTE, file=sys.stderr)
+            result = _fetch_uid(args.uid, layout, now)
             roster = result.roster
             how = (
                 f"served from the local cache; next request in {result.seconds_until_refresh}s"
@@ -235,6 +340,23 @@ def _read_profiles(path: Path) -> list[CharacterProfile] | None:
     return None
 
 
+def _read_rules(path: Path) -> tuple[ArtifactRules | None, int]:
+    """The level rules, or None with a note if the file is missing; exit code 1 if invalid."""
+    if not path.is_file():
+        print(f"No artifact level rules at {path}: potential is not shown.", file=sys.stderr)
+        return None, 0
+    try:
+        if path.stat().st_size > MAX_PROFILE_FILE_BYTES:
+            print("The rules file is too large to be a rules file.", file=sys.stderr)
+            return None, 1
+        return load_artifact_rules(path.read_text(encoding="utf-8")), 0
+    except RulesError as exc:
+        print(f"The rules file is invalid: {exc}", file=sys.stderr)
+    except (OSError, UnicodeDecodeError):
+        print("The rules file could not be read as UTF-8 text.", file=sys.stderr)
+    return None, 1
+
+
 def _cmd_score(args: argparse.Namespace) -> int:
     layout = DataLayout(resolve_home())
     roster, code = _load_roster(layout, args.uid)
@@ -247,7 +369,10 @@ def _cmd_score(args: argparse.Namespace) -> int:
     profiles = _read_profiles(Path(args.profiles))
     if profiles is None:
         return 1
-    print(render_scores(score_roster(roster, snapshot, profiles)))
+    rules, code = _read_rules(Path(args.rules))
+    if code:
+        return code
+    print(render_scores(score_roster(roster, snapshot, profiles, rules)))
     return 0
 
 
@@ -263,7 +388,10 @@ def _cmd_recommend(args: argparse.Namespace) -> int:
     profiles = _read_profiles(Path(args.profiles))
     if profiles is None:
         return 1
-    recs = recommend_roster(roster, snapshot, profiles)
+    rules, code = _read_rules(Path(args.rules))
+    if code:
+        return code
+    recs = recommend_roster(roster, snapshot, profiles, rules)
     if args.character:
         wanted = args.character.casefold()
         recs = [r for r in recs if r.name.casefold() == wanted]
@@ -356,7 +484,17 @@ def build_parser() -> argparse.ArgumentParser:
     imp = sub.add_parser("import", help="import a roster by UID (sends the UID to Enka) or --file")
     imp.add_argument("uid", nargs="?", help="9-10 digit UID")
     imp.add_argument("--file", help="read a saved Enka response instead of contacting Enka")
+    imp.add_argument(
+        "--refresh",
+        action="store_true",
+        help="re-import every saved roster (only contacts Enka when its reuse window has passed)",
+    )
     imp.set_defaults(func=_cmd_import)
+    look = sub.add_parser(
+        "lookup", help="preview a player's public showcase (sends the UID to Enka)"
+    )
+    look.add_argument("uid", help="9-10 digit UID")
+    look.set_defaults(func=_cmd_lookup)
     ros = sub.add_parser("roster", help="show the imported roster with verified roll breakdowns")
     ros.add_argument("uid", nargs="?")
     ros.set_defaults(func=_cmd_roster)
@@ -364,10 +502,12 @@ def build_parser() -> argparse.ArgumentParser:
     rec.add_argument("uid", nargs="?")
     rec.add_argument("--profiles", default="profiles/characters.toml")
     rec.add_argument("--character", help="only this character (by name)")
+    rec.add_argument("--rules", default="rules/artifact-levels.toml")
     rec.set_defaults(func=_cmd_recommend)
     sco = sub.add_parser("score", help="rate the imported roster's artifacts against the profiles")
     sco.add_argument("uid", nargs="?")
     sco.add_argument("--profiles", default="profiles/characters.toml")
+    sco.add_argument("--rules", default="rules/artifact-levels.toml")
     sco.set_defaults(func=_cmd_score)
     prof = sub.add_parser("profiles", help="list and validate the curated stat profiles")
     prof.add_argument("--file", default="profiles/characters.toml")
